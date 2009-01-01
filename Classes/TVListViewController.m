@@ -1,0 +1,413 @@
+#import "TVListViewController.h"
+#import "TVManager.h"
+#import "TVProgram.h"
+#import "TVProgramCell.h"
+#import "TVProgramCellMedium.h"
+#import "TVProgramCellLarge.h"
+#import "TVProgramCellExtraLarge.h"
+#import "DetailsViewController.h"
+#import "TVListingsAppDelegate.h"
+#import "UICCalendarPicker.h"
+#import "Debug.h"
+
+@implementation TVListViewController
+
+@synthesize tvListView;
+@synthesize moveTimeControl;
+@synthesize manager;
+@synthesize programs;
+@synthesize area;
+@synthesize category;
+
+- (void)dealloc {
+	[dateButton release];
+	[gregorian release];
+	[category release];
+	[area release];
+	[programs release];
+	[manager release];
+	[moveTimeControl release];
+	[tvListView setDelegate:nil];
+	[tvListView release];
+    [super dealloc];
+}
+
+- (NSString *)category {
+	return @"g";
+}
+
+- (CGRect)preferredSize {
+	CGRect frame = tvListView.frame;
+	return CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 367.0f);
+}
+
+- (BOOL)dateIndexed {
+	return NO;
+}
+
+- (void)setNavigationBarTitle:(NSString *)title {
+	LOG(@"set navigation bar title: %@", title);
+	[dateButton release];
+	dateButton = nil;
+	dateButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+	[dateButton setEnabled:NO];
+	[dateButton setFrame:CGRectMake(0.0f, 0.0f, 140.0f, 26.0f)];
+	[dateButton setFont:[UIFont boldSystemFontOfSize:20.0f]];
+	[dateButton setTitle:title forState:UIControlStateNormal];
+	[dateButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+	[dateButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateDisabled];
+	[dateButton addTarget:self action:@selector(moveDayOfWeek:) forControlEvents:UIControlEventTouchUpInside];
+	[self.navigationItem setTitleView:dateButton];
+}
+
+- (NSString *)feedURL {
+	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
+	Settings *settings = sharedTVListingsApp.settings;
+	return [NSString stringWithFormat:
+			@"http://tv.nikkansports.com/tv.php?mode=04&site=007&template=rss&pageCharSet=UTF8&area=%@&category=%@&lhour=%d&shour=%d&sdate=%@", 
+			settings.area, self.category, sharedTVListingsApp.lhour, sharedTVListingsApp.shour, sharedTVListingsApp.sdate];
+}
+
+- (void)enableButtons {
+	[moveTimeControl setEnabled:YES forSegmentAtIndex:1];
+	[moveTimeControl setEnabled:YES forSegmentAtIndex:3];
+	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
+	if (sharedTVListingsApp.shour == 0) {
+		[moveTimeControl setEnabled:NO forSegmentAtIndex:0];
+		[moveTimeControl setEnabled:YES forSegmentAtIndex:2];
+	} else if (sharedTVListingsApp.shour == 48) {
+		[moveTimeControl setEnabled:YES forSegmentAtIndex:0];
+		[moveTimeControl setEnabled:NO forSegmentAtIndex:2];
+	} else {
+		[moveTimeControl setEnabled:YES forSegmentAtIndex:0];
+		[moveTimeControl setEnabled:YES forSegmentAtIndex:2];
+	}
+	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	[formatter setDateStyle:NSDateFormatterMediumStyle];
+	if (sharedTVListingsApp.shour > 24) {
+		NSDateComponents *offsetComponent = [[NSDateComponents alloc] init];
+		[offsetComponent setDay:1];
+		[self setNavigationBarTitle:[formatter stringFromDate:[gregorian dateByAddingComponents:offsetComponent toDate:sharedTVListingsApp.baseDate options:0]]];
+	} else {
+		[self setNavigationBarTitle:[formatter stringFromDate:sharedTVListingsApp.baseDate]];
+	}
+	[dateButton setEnabled:YES];
+}
+
+-(void)willRefleshData {
+	[dateButton setEnabled:NO];
+	[moveTimeControl setEnabled:NO forSegmentAtIndex:0];
+	[moveTimeControl setEnabled:NO forSegmentAtIndex:1];
+	[moveTimeControl setEnabled:NO forSegmentAtIndex:2];
+	[moveTimeControl setEnabled:NO forSegmentAtIndex:3];
+}
+
+-(void)didRefleshData {
+	[self enableButtons];
+}
+
+- (IBAction)refleshData:(id)sender {
+	[self performSelectorOnMainThread:@selector(willRefleshData) withObject:nil waitUntilDone:YES];
+	LOG(@"feed: <%@>", [self feedURL]);
+	self.programs = [manager getTVList:[self feedURL] dateIndexed:[self dateIndexed]];
+	[tvListView reloadData];
+	[self performSelectorOnMainThread:@selector(didRefleshData) withObject:nil waitUntilDone:YES];
+}
+
+- (void)_refleshData {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	[self refleshData:nil];
+	[pool release];
+}
+
+- (NSInteger)getNowTimeOfDay {
+	NSDate *now = [NSDate date];
+	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	[formatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"US"] autorelease]];
+	[formatter setDateFormat:@"HH"];
+	return [[formatter stringFromDate:now] intValue];
+}
+
+- (NSString *)getNowDate {
+	NSDate *now = [NSDate date];
+	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	[formatter setDateFormat:@"yyyyMMdd"];
+	return [formatter stringFromDate:now];
+}
+
+- (IBAction)moveTimeOfDay:(id)sender {
+	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
+	Settings *settings = sharedTVListingsApp.settings;
+	UISegmentedControl* segmentedControl = sender;
+	NSInteger selectedSegmentIndex = [segmentedControl selectedSegmentIndex];
+	if (selectedSegmentIndex == 0) {
+		sharedTVListingsApp.lhour = settings.lhour;
+		NSInteger shour = sharedTVListingsApp.shour;
+		sharedTVListingsApp.shour = --shour;
+	} else if (selectedSegmentIndex == 1) {
+		sharedTVListingsApp.lhour = settings.lhour;
+		sharedTVListingsApp.shour = [self getNowTimeOfDay];
+		sharedTVListingsApp.sdate = [self getNowDate];
+		sharedTVListingsApp.baseDate = [NSDate date];
+	} else if (selectedSegmentIndex == 2) {
+		sharedTVListingsApp.lhour = settings.lhour;
+		NSInteger shour = sharedTVListingsApp.shour;
+		sharedTVListingsApp.shour = ++shour;
+	} else {
+		NSInteger indexFrom = [[TVListingsAppDelegate timeList] indexOfObject:settings.primeTimeFrom];
+		NSInteger indexTo = [[TVListingsAppDelegate timeList] indexOfObject:settings.primeTimeTo];
+		NSInteger lhour = 4;
+		if (indexFrom == indexTo) {
+			lhour = 1;
+		} else if (indexFrom < indexTo) {
+			lhour = indexTo - indexFrom;
+		} else {
+			lhour = (indexTo + 24) - indexFrom;
+		}
+
+		sharedTVListingsApp.lhour = lhour;
+		sharedTVListingsApp.shour = indexFrom;
+	}
+	
+	[self enableButtons];
+	[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(_refleshData) userInfo:nil repeats:NO];
+}
+
+
+- (IBAction)moveDayOfWeek:(id)sender {
+	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
+	
+	UIView *blockView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+	[blockView setTag:999];
+	[blockView setBackgroundColor:[UIColor blackColor]];
+	[blockView setAlpha:0.0f];
+	[[[UIApplication sharedApplication] keyWindow] addSubview:blockView];
+	
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.3f];
+	[UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:blockView cache:NO];
+	[blockView setAlpha:0.5f];
+	[UIView commitAnimations];
+	
+	UICCalendarPicker *calendarPicker = [[UICCalendarPicker alloc] initWithSize:UICCalendarPickerSizeExtraLarge];
+	[calendarPicker setDelegate:self];
+	[calendarPicker addSelectedDate:sharedTVListingsApp.baseDate];
+	[calendarPicker setMinDate:[NSDate dateWithTimeIntervalSinceNow:-86400 * 7]];
+	[calendarPicker setMaxDate:[NSDate dateWithTimeIntervalSinceNow:86400 * 7]];
+	[calendarPicker showAtPoint:CGPointMake(320.0f / 2 - calendarPicker.frame.size.width / 2, 64.0f) inView:[[UIApplication sharedApplication] keyWindow] animated:YES];
+	[calendarPicker release];
+	
+	[blockView release];
+}
+
+#pragma mark <UICCalendarPickerDelegate> Methods
+
+- (void)picker:(UICCalendarPicker *)picker didSelectDate:(NSArray *)selectedDate {
+	LOG_CURRENT_METHOD;
+	
+	if ([selectedDate count] == 0) {
+		return;
+	}
+	
+	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
+	
+	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	[dateFormatter setDateFormat:@"yyyyMMdd"];
+	
+	NSInteger shour = sharedTVListingsApp.shour;
+	if (shour >= 24) {
+		shour = shour - 24;
+	}
+	
+	sharedTVListingsApp.baseDate = [selectedDate lastObject];
+	sharedTVListingsApp.sdate = [dateFormatter stringFromDate:sharedTVListingsApp.baseDate];
+	sharedTVListingsApp.shour = shour;
+	
+	[dateFormatter setDateFormat:@"yyyy/MM/dd"];
+	[self setNavigationBarTitle:[dateFormatter stringFromDate:sharedTVListingsApp.baseDate]];
+	
+	[NSThread detachNewThreadSelector:@selector(_refleshData) toTarget:self withObject:nil];
+	
+	[picker dismiss:nil animated:YES];
+
+	UIView *blockView = [[[UIApplication sharedApplication] keyWindow] viewWithTag:999];
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
+	[UIView setAnimationDuration:0.3f];
+	[UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:blockView cache:NO];
+	[blockView setAlpha:0.0f];
+	[UIView commitAnimations];
+}
+
+- (void)picker:(UICCalendarPicker *)picker pushedCloseButton:(id)sender {
+	[picker dismiss:sender animated:YES];
+	
+	UIView *blockView = [[[UIApplication sharedApplication] keyWindow] viewWithTag:999];
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
+	[UIView setAnimationDuration:0.3f];
+	[UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:blockView cache:NO];
+	[blockView setAlpha:0.0f];
+	[UIView commitAnimations];
+}
+
+- (void)animationFinished:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
+	UIView *blockView = [[[UIApplication sharedApplication] keyWindow] viewWithTag:999];
+	[blockView removeFromSuperview];
+}
+
+- (void)buildMoveTimeButtons {
+	self.moveTimeControl = [[[UISegmentedControl alloc] initWithItems:
+							 [NSArray arrayWithObjects:
+							  [UIImage imageNamed:@"up.png"],
+							  [UIImage imageNamed:@"now.png"],
+							  [UIImage imageNamed:@"down.png"],
+							  [UIImage imageNamed:@"crown.png"],
+							  nil]] autorelease];
+	[moveTimeControl addTarget:self action:@selector(moveTimeOfDay:) forControlEvents:UIControlEventValueChanged];
+	CGRect frame = moveTimeControl.frame;
+	moveTimeControl.frame = CGRectMake(frame.origin.x, frame.origin.y, 130.0f, 28.0f);
+	moveTimeControl.segmentedControlStyle = UISegmentedControlStyleBar;
+	moveTimeControl.momentary = YES;
+	moveTimeControl.tintColor = [UIColor darkGrayColor];
+	[moveTimeControl setEnabled:NO forSegmentAtIndex:0];
+	[moveTimeControl setEnabled:NO forSegmentAtIndex:1];
+	[moveTimeControl setEnabled:NO forSegmentAtIndex:2];
+	[moveTimeControl setEnabled:NO forSegmentAtIndex:3];
+	UIBarButtonItem *moveTimeBarItem = [[[UIBarButtonItem alloc] initWithCustomView:moveTimeControl] autorelease];
+	self.navigationItem.rightBarButtonItem = moveTimeBarItem;
+}
+
+#pragma mark <UITableViewDataSource> Methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	NSInteger count = [[programs allKeys] count];
+	if (count == 0) {
+		return 1;
+	}
+	return count;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	NSArray *keys = [programs allKeys];
+	if ([keys count] == 0) {
+		return nil;
+	}
+	NSString *titleForHeader = [[keys sortedArrayUsingSelector:@selector(compare:)] objectAtIndex:section];
+	return [[titleForHeader componentsSeparatedByString:@"|||"] objectAtIndex:2];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	NSArray *keys = [programs allKeys];
+	if ([keys count] == 0) {
+		return 0;
+	}
+	return [[programs objectForKey:[[keys sortedArrayUsingSelector:@selector(compare:)] objectAtIndex:section]] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
+	Settings *settings = sharedTVListingsApp.settings;
+	TVProgramCell *cell;
+	if (settings.fontSize == SettingsFontSizeSmall) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"TVProgramCell"];
+		if (cell == nil) {
+			cell = [[[TVProgramCell alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 42.0f) reuseIdentifier:@"TVProgramCell"] autorelease];
+		}
+	} else if (settings.fontSize == SettingsFontSizeMedium) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"TVProgramCellMedium"];
+		if (cell == nil) {
+			cell = [[[TVProgramCellMedium alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f) reuseIdentifier:@"TVProgramCellMedium"] autorelease];
+		}
+	} else if (settings.fontSize == SettingsFontSizeLarge) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"TVProgramCellLarge"];
+		if (cell == nil) {
+			cell = [[[TVProgramCellLarge alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 66.0f) reuseIdentifier:@"TVProgramCellLarge"] autorelease];
+		}
+	} else {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"TVProgramCellExtraLarge"];
+		if (cell == nil) {
+			cell = [[[TVProgramCellExtraLarge alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 76.0f) reuseIdentifier:@"TVProgramCellExtraLarge"] autorelease];
+		}
+	}
+	
+	NSArray *keys = [programs allKeys];
+	TVProgram *program = [[programs objectForKey:[[keys sortedArrayUsingSelector:@selector(compare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+	cell.titleLabel.text = program.title;
+	cell.detailLabel.text = program.details;
+	cell.timeLabel.text = program.time;
+	cell.dateLabel.text = program.date;
+	cell.categoryLabel.text = program.category;
+    return cell;
+}
+
+#pragma mark <UITableViewDelegate> Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	DetailsViewController *controller = [[TVListingsAppDelegate sharedTVListingsApp] sharedDetailsViewController];
+	NSArray *keys = [programs allKeys];
+	TVProgram *program = [[programs objectForKey:[[keys sortedArrayUsingSelector:@selector(compare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+	if ([program.link length]) {
+		controller.title = program.title;
+		controller.detailPageURL = program.link;
+		controller.hidesBottomBarWhenPushed = YES;
+		shoudNotReflesh = YES;
+		[self.navigationController pushViewController:controller animated:YES];
+	} else {
+		[tvListView deselectRowAtIndexPath:[tvListView indexPathForSelectedRow] animated:YES];
+	}
+}
+
+#pragma mark <UIViewController> Methods
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
+	Settings *settings = sharedTVListingsApp.settings;
+	if (settings.fontSize == SettingsFontSizeSmall) {
+		[tvListView setRowHeight:42.0f];
+	} else if (settings.fontSize == SettingsFontSizeMedium) {
+		[tvListView setRowHeight:44.0f];
+	} else if (settings.fontSize == SettingsFontSizeLarge) {
+		[tvListView setRowHeight:66.0f];
+	} else {
+		[tvListView setRowHeight:76.0f];
+	}
+		
+	tvListView.frame = [self preferredSize];
+	[tvListView deselectRowAtIndexPath:[tvListView indexPathForSelectedRow] animated:YES];
+	
+	if (!shoudNotReflesh) {
+		[NSThread detachNewThreadSelector:@selector(_refleshData) toTarget:self withObject:nil];
+	} else {
+		shoudNotReflesh = NO;
+	}
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+			
+	gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	
+	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
+	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	[formatter setDateStyle:NSDateFormatterMediumStyle];
+	[self setNavigationBarTitle:[formatter stringFromDate:sharedTVListingsApp.baseDate]];
+	
+	self.manager = [[TVManager alloc] init];
+	
+	[self buildMoveTimeButtons];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+@end
