@@ -83,6 +83,7 @@
 		[moveTimeControl setEnabled:YES forSegmentAtIndex:2];
 	}
 	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"JST"]];
 	[formatter setDateStyle:NSDateFormatterMediumStyle];
 	if (sharedTVListingsApp.shour > 24) {
 		NSDateComponents *offsetComponent = [[NSDateComponents alloc] init];
@@ -123,6 +124,7 @@
 - (NSInteger)getNowTimeOfDay {
 	NSDate *now = [NSDate date];
 	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"JST"]];
 	[formatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"US"] autorelease]];
 	[formatter setDateFormat:@"HH"];
 	return [[formatter stringFromDate:now] intValue];
@@ -131,6 +133,7 @@
 - (NSString *)getNowDate {
 	NSDate *now = [NSDate date];
 	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"JST"]];
 	[formatter setDateFormat:@"yyyyMMdd"];
 	return [formatter stringFromDate:now];
 }
@@ -212,6 +215,7 @@
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
 	
 	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	[dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"JST"]];
 	[dateFormatter setDateFormat:@"yyyyMMdd"];
 	
 	NSInteger shour = sharedTVListingsApp.shour;
@@ -394,6 +398,7 @@
 	
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
 	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"JST"]];
 	[formatter setDateStyle:NSDateFormatterMediumStyle];
 	[self setNavigationBarTitle:[formatter stringFromDate:sharedTVListingsApp.baseDate]];
 	

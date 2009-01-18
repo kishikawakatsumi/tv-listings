@@ -29,6 +29,7 @@ static NSArray *timeList = NULL;
 - (NSInteger)getNowTimeOfDay {
 	NSDate *now = [NSDate date];
 	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"JST"]];
 	[formatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"US"] autorelease]];
 	[formatter setDateFormat:@"HH"];
 	return [[formatter stringFromDate:now] intValue];
@@ -37,6 +38,7 @@ static NSArray *timeList = NULL;
 - (NSString *)getNowDate {
 	NSDate *now = [NSDate date];
 	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"JST"]];
 	[formatter setDateFormat:@"yyyyMMdd"];
 	return [formatter stringFromDate:now];
 }
