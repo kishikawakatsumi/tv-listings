@@ -51,6 +51,8 @@
 		147324260E8985A700130051 /* TVSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 147324250E8985A700130051 /* TVSearchView.xib */; };
 		1476D58D0EBB451800A7E386 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1476D58C0EBB451800A7E386 /* RegexKitLite.m */; };
 		1476D59C0EBB457200A7E386 /* RKLMatchEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1476D59B0EBB457200A7E386 /* RKLMatchEnumerator.m */; };
+		148900940F3EC1710085B0EA /* UICCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 148900910F3EC1710085B0EA /* UICCalendarPicker.m */; };
+		148900950F3EC1710085B0EA /* UICCalendarPickerDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 148900930F3EC1710085B0EA /* UICCalendarPickerDateButton.m */; };
 		149AC1E80E98CB560061AEDF /* crown.png in Resources */ = {isa = PBXBuildFile; fileRef = 149AC1E70E98CB560061AEDF /* crown.png */; };
 		149AC20E0E98D2430061AEDF /* RegionSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149AC20D0E98D2430061AEDF /* RegionSettingViewController.m */; };
 		149AC37F0E98F4AF0061AEDF /* PrimeTimeSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149AC37E0E98F4AF0061AEDF /* PrimeTimeSettingViewController.m */; };
@@ -59,8 +61,6 @@
 		149F65A10EE2A22D00327D14 /* TVProgramCellMedium.m in Sources */ = {isa = PBXBuildFile; fileRef = 149F65A00EE2A22D00327D14 /* TVProgramCellMedium.m */; };
 		149F65A40EE2A24400327D14 /* TVProgramCellLarge.m in Sources */ = {isa = PBXBuildFile; fileRef = 149F65A30EE2A24400327D14 /* TVProgramCellLarge.m */; };
 		149F65AD0EE2A25200327D14 /* TVProgramCellExtraLarge.m in Sources */ = {isa = PBXBuildFile; fileRef = 149F65AC0EE2A25200327D14 /* TVProgramCellExtraLarge.m */; };
-		14C3FA8B0F01617200B01BB6 /* UICCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C3FA880F01617200B01BB6 /* UICCalendarPicker.m */; };
-		14C3FA8C0F01617200B01BB6 /* UICCalendarPickerDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C3FA8A0F01617200B01BB6 /* UICCalendarPickerDateButton.m */; };
 		14C3FB230F0164F900B01BB6 /* uiccalendar_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C3FB130F0164F900B01BB6 /* uiccalendar_background.png */; };
 		14C3FB240F0164F900B01BB6 /* uiccalendar_main.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C3FB140F0164F900B01BB6 /* uiccalendar_main.png */; };
 		14C3FB250F0164F900B01BB6 /* uiccalendar_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C3FB150F0164F900B01BB6 /* uiccalendar_title.png */; };
@@ -161,6 +161,10 @@
 		1476D58C0EBB451800A7E386 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		1476D59A0EBB457200A7E386 /* RKLMatchEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLMatchEnumerator.h; sourceTree = "<group>"; };
 		1476D59B0EBB457200A7E386 /* RKLMatchEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLMatchEnumerator.m; sourceTree = "<group>"; };
+		148900900F3EC1710085B0EA /* UICCalendarPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPicker.h; sourceTree = "<group>"; };
+		148900910F3EC1710085B0EA /* UICCalendarPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPicker.m; sourceTree = "<group>"; };
+		148900920F3EC1710085B0EA /* UICCalendarPickerDateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPickerDateButton.h; sourceTree = "<group>"; };
+		148900930F3EC1710085B0EA /* UICCalendarPickerDateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPickerDateButton.m; sourceTree = "<group>"; };
 		149AC1E70E98CB560061AEDF /* crown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown.png; sourceTree = "<group>"; };
 		149AC20C0E98D2430061AEDF /* RegionSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionSettingViewController.h; sourceTree = "<group>"; };
 		149AC20D0E98D2430061AEDF /* RegionSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionSettingViewController.m; sourceTree = "<group>"; };
@@ -176,10 +180,6 @@
 		149F65A30EE2A24400327D14 /* TVProgramCellLarge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVProgramCellLarge.m; sourceTree = "<group>"; };
 		149F65AB0EE2A25200327D14 /* TVProgramCellExtraLarge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVProgramCellExtraLarge.h; sourceTree = "<group>"; };
 		149F65AC0EE2A25200327D14 /* TVProgramCellExtraLarge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVProgramCellExtraLarge.m; sourceTree = "<group>"; };
-		14C3FA870F01617200B01BB6 /* UICCalendarPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPicker.h; sourceTree = "<group>"; };
-		14C3FA880F01617200B01BB6 /* UICCalendarPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPicker.m; sourceTree = "<group>"; };
-		14C3FA890F01617200B01BB6 /* UICCalendarPickerDateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPickerDateButton.h; sourceTree = "<group>"; };
-		14C3FA8A0F01617200B01BB6 /* UICCalendarPickerDateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPickerDateButton.m; sourceTree = "<group>"; };
 		14C3FB130F0164F900B01BB6 /* uiccalendar_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_background.png; sourceTree = "<group>"; };
 		14C3FB140F0164F900B01BB6 /* uiccalendar_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_main.png; sourceTree = "<group>"; };
 		14C3FB150F0164F900B01BB6 /* uiccalendar_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_title.png; sourceTree = "<group>"; };
@@ -337,10 +337,10 @@
 		14C3FA860F01615B00B01BB6 /* UICCalendarPicker */ = {
 			isa = PBXGroup;
 			children = (
-				14C3FA870F01617200B01BB6 /* UICCalendarPicker.h */,
-				14C3FA880F01617200B01BB6 /* UICCalendarPicker.m */,
-				14C3FA890F01617200B01BB6 /* UICCalendarPickerDateButton.h */,
-				14C3FA8A0F01617200B01BB6 /* UICCalendarPickerDateButton.m */,
+				148900900F3EC1710085B0EA /* UICCalendarPicker.h */,
+				148900910F3EC1710085B0EA /* UICCalendarPicker.m */,
+				148900920F3EC1710085B0EA /* UICCalendarPickerDateButton.h */,
+				148900930F3EC1710085B0EA /* UICCalendarPickerDateButton.m */,
 			);
 			name = UICCalendarPicker;
 			sourceTree = "<group>";
@@ -594,8 +594,8 @@
 				149F65A40EE2A24400327D14 /* TVProgramCellLarge.m in Sources */,
 				149F65AD0EE2A25200327D14 /* TVProgramCellExtraLarge.m in Sources */,
 				14493F680EE9811F009F1BED /* Reachability.m in Sources */,
-				14C3FA8B0F01617200B01BB6 /* UICCalendarPicker.m in Sources */,
-				14C3FA8C0F01617200B01BB6 /* UICCalendarPickerDateButton.m in Sources */,
+				148900940F3EC1710085B0EA /* UICCalendarPicker.m in Sources */,
+				148900950F3EC1710085B0EA /* UICCalendarPickerDateButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
