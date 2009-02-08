@@ -3,12 +3,6 @@
 
 @implementation TVProgramCellMedium
 
-@synthesize titleLabel;
-@synthesize detailLabel;
-@synthesize timeLabel;
-@synthesize dateLabel;
-@synthesize categoryLabel;
-
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         [self setAccessoryType:UITableViewCellAccessoryNone];
@@ -43,11 +37,6 @@
 
 - (void)dealloc {
 	LOG_CURRENT_METHOD;
-	[categoryLabel release];
-	[dateLabel release];
-	[timeLabel release];
-	[detailLabel release];
-	[titleLabel release];
     [super dealloc];
 }
 

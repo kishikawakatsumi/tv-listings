@@ -316,22 +316,22 @@
 	Settings *settings = sharedTVListingsApp.settings;
 	TVProgramCell *cell;
 	if (settings.fontSize == SettingsFontSizeSmall) {
-		cell = [tableView dequeueReusableCellWithIdentifier:@"TVProgramCell"];
+		cell = (TVProgramCell *)[tableView dequeueReusableCellWithIdentifier:@"TVProgramCell"];
 		if (cell == nil) {
 			cell = [[[TVProgramCell alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 42.0f) reuseIdentifier:@"TVProgramCell"] autorelease];
 		}
 	} else if (settings.fontSize == SettingsFontSizeMedium) {
-		cell = [tableView dequeueReusableCellWithIdentifier:@"TVProgramCellMedium"];
+		cell = (TVProgramCell *)[tableView dequeueReusableCellWithIdentifier:@"TVProgramCellMedium"];
 		if (cell == nil) {
 			cell = [[[TVProgramCellMedium alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f) reuseIdentifier:@"TVProgramCellMedium"] autorelease];
 		}
 	} else if (settings.fontSize == SettingsFontSizeLarge) {
-		cell = [tableView dequeueReusableCellWithIdentifier:@"TVProgramCellLarge"];
+		cell = (TVProgramCell *)[tableView dequeueReusableCellWithIdentifier:@"TVProgramCellLarge"];
 		if (cell == nil) {
 			cell = [[[TVProgramCellLarge alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 66.0f) reuseIdentifier:@"TVProgramCellLarge"] autorelease];
 		}
 	} else {
-		cell = [tableView dequeueReusableCellWithIdentifier:@"TVProgramCellExtraLarge"];
+		cell = (TVProgramCell *)[tableView dequeueReusableCellWithIdentifier:@"TVProgramCellExtraLarge"];
 		if (cell == nil) {
 			cell = [[[TVProgramCellExtraLarge alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 76.0f) reuseIdentifier:@"TVProgramCellExtraLarge"] autorelease];
 		}
