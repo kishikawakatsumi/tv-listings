@@ -146,8 +146,6 @@ static NSArray *timeList = NULL;
 
 - (void)updateStatus {
 	self.remoteHostStatus = [[Reachability sharedReachability] remoteHostStatus];
-	//self.internetConnectionStatus = [[Reachability sharedReachability] internetConnectionStatus];
-	//self.localWiFiConnectionStatus = [[Reachability sharedReachability] localWiFiConnectionStatus];
 }
 
 - (void)reachabilityChanged:(NSNotification *)note {
@@ -231,6 +229,7 @@ static NSArray *timeList = NULL;
 	[self updateStatus];
 	
 	[self loadSettings];
+	
 	self.lhour = settings.lhour;
 	
 	tabBarController.moreNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;

@@ -8,6 +8,7 @@
 #import "DetailsViewController.h"
 #import "TVListingsAppDelegate.h"
 #import "UICCalendarPicker.h"
+#import <QuartzCore/QuartzCore.h>
 #import "Debug.h"
 
 @implementation TVListViewController
@@ -272,7 +273,7 @@
 							  nil]] autorelease];
 	[moveTimeControl addTarget:self action:@selector(moveTimeOfDay:) forControlEvents:UIControlEventValueChanged];
 	CGRect frame = moveTimeControl.frame;
-	moveTimeControl.frame = CGRectMake(frame.origin.x, frame.origin.y, 130.0f, 28.0f);
+	moveTimeControl.frame = CGRectMake(frame.origin.x, frame.origin.y, 136.0f, 30.0f);
 	moveTimeControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	moveTimeControl.momentary = YES;
 	moveTimeControl.tintColor = [UIColor darkGrayColor];
@@ -339,11 +340,11 @@
 	
 	NSArray *keys = [programs allKeys];
 	TVProgram *program = [[programs objectForKey:[[keys sortedArrayUsingSelector:@selector(compare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-	cell.titleLabel.text = program.title;
-	cell.detailLabel.text = program.details;
-	cell.timeLabel.text = program.time;
-	cell.dateLabel.text = program.date;
-	cell.categoryLabel.text = program.category;
+	cell.title = program.title;
+	cell.detail = program.details;
+	cell.time = program.time;
+	cell.date = program.date;
+	cell.category = program.category;
     return cell;
 }
 
@@ -357,7 +358,7 @@
 		controller.title = program.title;
 		controller.detailPageURL = program.link;
 		controller.hidesBottomBarWhenPushed = YES;
-		shoudNotReflesh = YES;
+		shouldNotReflesh = YES;
 		[self.navigationController pushViewController:controller animated:YES];
 	} else {
 		[tvListView deselectRowAtIndexPath:[tvListView indexPathForSelectedRow] animated:YES];
@@ -384,10 +385,10 @@
 	tvListView.frame = [self preferredSize];
 	[tvListView deselectRowAtIndexPath:[tvListView indexPathForSelectedRow] animated:YES];
 	
-	if (!shoudNotReflesh) {
+	if (!shouldNotReflesh) {
 		[NSThread detachNewThreadSelector:@selector(_refleshData) toTarget:self withObject:nil];
 	} else {
-		shoudNotReflesh = NO;
+		shouldNotReflesh = NO;
 	}
 }
 

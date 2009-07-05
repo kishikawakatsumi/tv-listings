@@ -7,33 +7,27 @@
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         [self setAccessoryType:UITableViewCellAccessoryNone];
 		[self setOpaque:YES];
-		
-		timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(2.0f, 4.0f, 98.0f, 18.0f)];
-		[timeLabel setOpaque:YES];
-		[timeLabel setFont:[UIFont boldSystemFontOfSize:16.0f]];
-		[timeLabel setTextColor:[UIColor colorWithRed:0.0f green:0.2f blue:0.8f alpha:1.0f]];
-		[timeLabel setHighlightedTextColor:[UIColor whiteColor]];
-		[self addSubview:timeLabel];
-		
-		titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(108.0f, 2.0f, 212.0f, 22.0f)];
-		[titleLabel setOpaque:YES];
-		[titleLabel setFont:[UIFont boldSystemFontOfSize:18.0f]];
-		[titleLabel setHighlightedTextColor:[UIColor whiteColor]];
-		[self addSubview:titleLabel];
-		
-		detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 28.0f, 320.0f, 42.0f)];
-		[detailLabel setOpaque:YES];
-		[detailLabel setFont:[UIFont systemFontOfSize:18.0f]];
-		[detailLabel setNumberOfLines:2];
-		[detailLabel setTextColor:[UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f]];
-		[detailLabel setHighlightedTextColor:[UIColor whiteColor]];
-		[self addSubview:detailLabel];
     }
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)drawRect:(CGRect)rect {
+	[[UIColor colorWithRed:0.0f green:0.2f blue:0.8f alpha:1.0f] set];
+	[time drawInRect:CGRectMake(2.0f, 3.0f, 98.0f, 18.0f) withFont:[UIFont boldSystemFontOfSize:16.0f]];
+	[[UIColor blackColor] set];
+	[title drawInRect:CGRectMake(108.0f, 2.0f, 212.0f, 22.0f) withFont:[UIFont boldSystemFontOfSize:18.0f] lineBreakMode:UILineBreakModeTailTruncation];
+	[[UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f] set];
+	[detail drawInRect:CGRectMake(2.0f, 27.0f, 318.0f, 42.0f) withFont:[UIFont systemFontOfSize:18.0f] lineBreakMode:UILineBreakModeTailTruncation];
+}
+
+- (void)drawSelectedBackgroundRect:(CGRect)rect {
+	CGGradientRef gradientForSelected = createTwoColorsGradient(5, 140, 245, 1, 93, 230);
+	drawRoundedRectBackgroundGradient(rect, gradientForSelected, NO, NO, NO);
+	CGGradientRelease(gradientForSelected);
+	[[UIColor whiteColor] set];
+	[time drawInRect:CGRectMake(2.0f, 3.0f, 98.0f, 18.0f) withFont:[UIFont boldSystemFontOfSize:16.0f]];
+	[title drawInRect:CGRectMake(108.0f, 2.0f, 212.0f, 22.0f) withFont:[UIFont boldSystemFontOfSize:18.0f] lineBreakMode:UILineBreakModeTailTruncation];
+	[detail drawInRect:CGRectMake(2.0f, 27.0f, 318.0f, 42.0f) withFont:[UIFont systemFontOfSize:18.0f] lineBreakMode:UILineBreakModeTailTruncation];
 }
 
 - (void)dealloc {

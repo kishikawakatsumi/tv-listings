@@ -1,5 +1,5 @@
 #import "TVManager.h"
-#import "XMLParser.h"
+#import "FeedParser.h"
 #import "TVProgram.h"
 #import "NSString_FJNFullwidthHalfwidth.h"
 #import "RegexKitLite.h"
@@ -85,6 +85,7 @@ static NSDictionary *abbreviationMappings = NULL;
 }
 
 - (NSDictionary *)getTVList:(NSString *)feedURL dateIndexed:(BOOL)dateIndexed {
+	NSMutableDictionary *programs = nil;
 	@synchronized (self) {
 		if (!feedURL) {
 			return nil;
@@ -94,10 +95,11 @@ static NSDictionary *abbreviationMappings = NULL;
 		
 		NSURL *URL = [NSURL URLWithString:feedURL];
 		
-		XMLParser *parser = [[[XMLParser alloc] parseXMLAtURL:URL entryTag:@"item" parseError:nil] autorelease];
-		NSArray *items = [parser items];
+		FeedParser *parser = [[FeedParser alloc] initWithRequest:[NSURLRequest requestWithURL:URL]];
+		[parser start];
+		NSArray *items = [[parser channel] objectForKey:@"items"];
 		
-		NSMutableDictionary *programs = [NSMutableDictionary dictionaryWithCapacity:10];
+		programs = [NSMutableDictionary dictionaryWithCapacity:10];
 		for (id item in items) {
 			TVProgram *program = [[[TVProgram alloc] init] autorelease];
 			
@@ -134,7 +136,7 @@ static NSDictionary *abbreviationMappings = NULL;
 			if ([pubDate length] > 0) {
 				program.pubDate = pubDate;
 			}
-			NSString *details = [item objectForKey:@"description"];
+			NSString *details = [[item objectForKey:@"description"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 			if ([details length] > 0) {
 				NSString *searchString = [details stringByHalfwideningLatinCharacters];
 				
@@ -175,11 +177,9 @@ static NSDictionary *abbreviationMappings = NULL;
 			}
 			[section addObject:program];
 		}
-		
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		
-		return programs;
 	}
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	return programs;
 }
 
 @end

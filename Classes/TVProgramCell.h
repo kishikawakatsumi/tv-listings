@@ -1,17 +1,20 @@
 #import <UIKit/UIKit.h>
+#import "TableCellDrawing.h"
 
 @interface TVProgramCell : UITableViewCell {
-	IBOutlet UILabel *titleLabel;
-	IBOutlet UILabel *detailLabel;
-	IBOutlet UILabel *timeLabel;
-	IBOutlet UILabel *dateLabel;
-	IBOutlet UILabel *categoryLabel;
+	NSString *title;
+	NSString *detail;
+	NSString *time;
+	NSString *date;
+	NSString *category;
 }
 
-@property (nonatomic, retain) UILabel *titleLabel;
-@property (nonatomic, retain) UILabel *detailLabel;
-@property (nonatomic, retain) UILabel *timeLabel;
-@property (nonatomic, retain) UILabel *dateLabel;
-@property (nonatomic, retain) UILabel *categoryLabel;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *detail;
+@property (nonatomic, retain) NSString *time;
+@property (nonatomic, retain) NSString *date;
+@property (nonatomic, retain) NSString *category;
+
+- (void)drawSelectedBackgroundRect:(CGRect)rect;
 
 @end

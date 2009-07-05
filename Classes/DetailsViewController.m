@@ -1,11 +1,16 @@
 #import "DetailsViewController.h"
 #import "NSString+XMLExtensions.h"
 #import "Debug.h"
+#import <objc/runtime.h>
 
 @implementation DetailsViewController
 
 @synthesize detailsView;
 @synthesize detailPageURL;
+
+static NSObject *webViewcreateWebViewWithRequestIMP(id self, SEL _cmd, NSObject* sender, NSObject* request) {
+	return [sender retain];
+}
 
 - (void)dealloc {
 	LOG_CURRENT_METHOD;
@@ -17,36 +22,29 @@
 
 #pragma mark <UIWebViewDelegate> Methods
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	NSString *aURL = [[request URL] absoluteString];
-	NSString *mainDocumentURL = [request.mainDocumentURL absoluteString];
-	if (mainDocumentURL == nil || ![mainDocumentURL isEqualToString:aURL]) {
-		return NO;
-	}
-	
-	LOG(@"<%@>", [request URL]);
-    return YES;
-}
-
 - (void)webViewDidStartLoad:(UIWebView *)webView {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	[webView stringByEvaluatingJavaScriptFromString:
-	 @"try {var a = document.getElementsByTagName('a'); for (var i = 0; i < a.length; ++i) { a[i].setAttribute('target', '');}}catch (e){}; document.title"];
+	[webView stringByEvaluatingJavaScriptFromString:@"window.open = function(url){window.location.href=url;};"];
+
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	[webView stringByEvaluatingJavaScriptFromString:@"window.open = function(url){window.location.href=url;};"];
+
 }
 
 #pragma mark <UIViewController> Methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[detailsView setBackgroundColor:[UIColor whiteColor]];
+	Class UIWebViewWebViewDelegate = objc_getClass("UIWebViewWebViewDelegate");
+	class_addMethod(UIWebViewWebViewDelegate, @selector(webView:createWebViewWithRequest:), 
+					(IMP)webViewcreateWebViewWithRequestIMP, "@@:@@");
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

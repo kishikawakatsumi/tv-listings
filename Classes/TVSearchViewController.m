@@ -132,7 +132,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-	shoudNotReflesh = YES;
+	shouldNotReflesh = YES;
 }
 
 - (void)viewDidLoad {
@@ -146,7 +146,7 @@
 	((WaitingView *)waitingView).tvSearchviewController = self;
 	[self.view addSubview:waitingView];
 	
-	shoudNotReflesh = YES;
+	shouldNotReflesh = YES;
 }
 
 @end

@@ -1,7 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "TVManager.h"
 
-
 @interface TVListViewController :
 UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate> {
 	IBOutlet UITableView *tvListView;
@@ -11,7 +10,7 @@ UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDeleg
 	NSString *area;
 	NSString *category;
 	NSCalendar *gregorian;
-	BOOL shoudNotReflesh;
+	BOOL shouldNotReflesh;
 	UIButton *dateButton;
 }
 

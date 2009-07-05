@@ -50,23 +50,12 @@
 	}
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-	if (section == 0) {
-		return 0.0f;
-	} else {
-		return 0.0f;
-	}
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
 	Settings *settings = sharedTVListingsApp.settings;
 	
 	if (indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2) {
-		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"Cell"] autorelease];
-		}
+		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"Cell"] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
 		if (indexPath.section == 0) {
@@ -79,17 +68,14 @@
 		
 		return cell;
 	} else {
-		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FontSizeCell"];
-		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"FontSizeCell"] autorelease];
-			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-			UISegmentedControl *fontSizeSelector = [[[UISegmentedControl alloc]
-													  initWithItems:[NSArray arrayWithObjects:@"S", @"M", @"L", @"XL", nil]] autorelease];
-			[fontSizeSelector setFrame:CGRectMake(9.0f, 0.0f, 302.0f, 45.0f)];
-			[fontSizeSelector setSelectedSegmentIndex:settings.fontSize];
-			[fontSizeSelector addTarget:self action:@selector(fontSizeChanged:) forControlEvents:UIControlEventValueChanged];
-			[cell addSubview:fontSizeSelector];
-		}
+		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"FontSizeCell"] autorelease];
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		UISegmentedControl *fontSizeSelector = [[[UISegmentedControl alloc]
+												 initWithItems:[NSArray arrayWithObjects:@"S", @"M", @"L", @"XL", nil]] autorelease];
+		[fontSizeSelector setFrame:CGRectMake(9.0f, 0.0f, 302.0f, 45.0f)];
+		[fontSizeSelector setSelectedSegmentIndex:settings.fontSize];
+		[fontSizeSelector addTarget:self action:@selector(fontSizeChanged:) forControlEvents:UIControlEventValueChanged];
+		[cell addSubview:fontSizeSelector];
 		
 		return cell;
 	}

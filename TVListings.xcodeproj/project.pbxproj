@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1404B16210012D8F00E133B9 /* FeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404B16110012D8F00E133B9 /* FeedParser.m */; };
+		1404B1751001309F00E133B9 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1404B1741001309F00E133B9 /* libxml2.dylib */; };
+		1404B20F10013CE200E133B9 /* TVProgramCellSelectedBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404B20E10013CE200E133B9 /* TVProgramCellSelectedBackgroundView.m */; };
+		1404B21510013E4200E133B9 /* TableCellDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404B21410013E4200E133B9 /* TableCellDrawing.m */; };
+		1404B3021001471A00E133B9 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 1404B3001001471A00E133B9 /* down.png */; };
+		1404B3031001471A00E133B9 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 1404B3011001471A00E133B9 /* up.png */; };
 		142A571C0E879E4200FC1188 /* SettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142A571B0E879E4200FC1188 /* SettingView.xib */; };
 		142A57230E879E7300FC1188 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A57220E879E7300FC1188 /* SettingViewController.m */; };
 		142A579C0E87A92000FC1188 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A579B0E87A92000FC1188 /* Settings.m */; };
@@ -14,7 +20,6 @@
 		142A585A0E87BC6E00FC1188 /* TVSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A58590E87BC6E00FC1188 /* TVSearchViewController.m */; };
 		142A59260E87CA7B00FC1188 /* SearchBookmarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142A59250E87CA7B00FC1188 /* SearchBookmarkView.xib */; };
 		142A59290E87CA9200FC1188 /* SearchBookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A59280E87CA9200FC1188 /* SearchBookmarkViewController.m */; };
-		142A5AD90E87E14900FC1188 /* now.png in Resources */ = {isa = PBXBuildFile; fileRef = 142A5AD80E87E14900FC1188 /* now.png */; };
 		142A5B110E87E7F600FC1188 /* BSDigital1TVListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A5B100E87E7F600FC1188 /* BSDigital1TVListViewController.m */; };
 		142A5B140E87E7FE00FC1188 /* BSDigital2TVListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A5B130E87E7FE00FC1188 /* BSDigital2TVListViewController.m */; };
 		142A5B170E87E81200FC1188 /* CS1TVListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142A5B160E87E81200FC1188 /* CS1TVListViewController.m */; };
@@ -47,7 +52,7 @@
 		142E33540EB214EF0078889A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 142E33530EB214EF0078889A /* Icon.png */; };
 		14493F680EE9811F009F1BED /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 14493F670EE9811F009F1BED /* Reachability.m */; };
 		144940640EE98299009F1BED /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144940630EE98299009F1BED /* SystemConfiguration.framework */; };
-		1453D83D0E8A8D3D0099DFBF /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1453D83C0E8A8D3D0099DFBF /* XMLParser.m */; };
+		1454BEF4100149760040C515 /* now.png in Resources */ = {isa = PBXBuildFile; fileRef = 1454BEF3100149760040C515 /* now.png */; };
 		147324260E8985A700130051 /* TVSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 147324250E8985A700130051 /* TVSearchView.xib */; };
 		1476D58D0EBB451800A7E386 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1476D58C0EBB451800A7E386 /* RegexKitLite.m */; };
 		1476D59C0EBB457200A7E386 /* RKLMatchEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1476D59B0EBB457200A7E386 /* RKLMatchEnumerator.m */; };
@@ -77,6 +82,7 @@
 		14C3FB300F0164F900B01BB6 /* uiccalendar_left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C3FB200F0164F900B01BB6 /* uiccalendar_left_arrow.png */; };
 		14C3FB310F0164F900B01BB6 /* uiccalendar_right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C3FB210F0164F900B01BB6 /* uiccalendar_right_arrow.png */; };
 		14C3FB320F0164F900B01BB6 /* uiccalendar_calendar_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C3FB220F0164F900B01BB6 /* uiccalendar_calendar_button.png */; };
+		14D248810F92659F0043A05B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D248800F92659F0043A05B /* QuartzCore.framework */; };
 		14F0B40E0E866E9500E0E18A /* TVListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F0B40D0E866E9500E0E18A /* TVListView.xib */; };
 		14F0B4110E866EC600E0E18A /* TVListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F0B4100E866EC600E0E18A /* TVListViewController.m */; };
 		14F0B43A0E86705100E0E18A /* TVManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F0B4390E86705100E0E18A /* TVManager.m */; };
@@ -87,8 +93,6 @@
 		14F0B8310E87514800E0E18A /* NSString+XMLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F0B8300E87514800E0E18A /* NSString+XMLExtensions.m */; };
 		14F0B8C10E8765B500E0E18A /* UHFBSTVListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F0B8C00E8765B500E0E18A /* UHFBSTVListViewController.m */; };
 		14F0B8E30E8767E800E0E18A /* UHFBSTVListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F0B8E20E8767E800E0E18A /* UHFBSTVListView.xib */; };
-		14F0B97C0E87742F00E0E18A /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F0B97A0E87742F00E0E18A /* up.png */; };
-		14F0B97D0E87742F00E0E18A /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F0B97B0E87742F00E0E18A /* down.png */; };
 		1D3623260D0F684500981E51 /* TVListingsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* TVListingsAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -97,6 +101,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1404B16010012D8F00E133B9 /* FeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedParser.h; sourceTree = "<group>"; };
+		1404B16110012D8F00E133B9 /* FeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedParser.m; sourceTree = "<group>"; };
+		1404B1741001309F00E133B9 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		1404B20D10013CE200E133B9 /* TVProgramCellSelectedBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVProgramCellSelectedBackgroundView.h; sourceTree = "<group>"; };
+		1404B20E10013CE200E133B9 /* TVProgramCellSelectedBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVProgramCellSelectedBackgroundView.m; sourceTree = "<group>"; };
+		1404B21310013E4200E133B9 /* TableCellDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCellDrawing.h; sourceTree = "<group>"; };
+		1404B21410013E4200E133B9 /* TableCellDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCellDrawing.m; sourceTree = "<group>"; };
+		1404B3001001471A00E133B9 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		1404B3011001471A00E133B9 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
 		142A571B0E879E4200FC1188 /* SettingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingView.xib; sourceTree = "<group>"; };
 		142A57210E879E7300FC1188 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		142A57220E879E7300FC1188 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
@@ -110,7 +123,6 @@
 		142A59250E87CA7B00FC1188 /* SearchBookmarkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBookmarkView.xib; sourceTree = "<group>"; };
 		142A59270E87CA9200FC1188 /* SearchBookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBookmarkViewController.h; sourceTree = "<group>"; };
 		142A59280E87CA9200FC1188 /* SearchBookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBookmarkViewController.m; sourceTree = "<group>"; };
-		142A5AD80E87E14900FC1188 /* now.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = now.png; sourceTree = "<group>"; };
 		142A5B0F0E87E7F600FC1188 /* BSDigital1TVListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDigital1TVListViewController.h; sourceTree = "<group>"; };
 		142A5B100E87E7F600FC1188 /* BSDigital1TVListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDigital1TVListViewController.m; sourceTree = "<group>"; };
 		142A5B120E87E7FE00FC1188 /* BSDigital2TVListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDigital2TVListViewController.h; sourceTree = "<group>"; };
@@ -154,8 +166,7 @@
 		14493F660EE9811F009F1BED /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		14493F670EE9811F009F1BED /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		144940630EE98299009F1BED /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		1453D83B0E8A8D3D0099DFBF /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
-		1453D83C0E8A8D3D0099DFBF /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
+		1454BEF3100149760040C515 /* now.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = now.png; sourceTree = "<group>"; };
 		147324270E8985B800130051 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Japanese; path = Japanese.lproj/TVSearchView.xib; sourceTree = "<group>"; };
 		1476D58B0EBB451800A7E386 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		1476D58C0EBB451800A7E386 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
@@ -196,6 +207,7 @@
 		14C3FB200F0164F900B01BB6 /* uiccalendar_left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_left_arrow.png; sourceTree = "<group>"; };
 		14C3FB210F0164F900B01BB6 /* uiccalendar_right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_right_arrow.png; sourceTree = "<group>"; };
 		14C3FB220F0164F900B01BB6 /* uiccalendar_calendar_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uiccalendar_calendar_button.png; sourceTree = "<group>"; };
+		14D248800F92659F0043A05B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		14F0B40D0E866E9500E0E18A /* TVListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVListView.xib; sourceTree = "<group>"; };
 		14F0B40F0E866EC600E0E18A /* TVListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVListViewController.h; sourceTree = "<group>"; };
 		14F0B4100E866EC600E0E18A /* TVListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVListViewController.m; sourceTree = "<group>"; };
@@ -213,8 +225,6 @@
 		14F0B8BF0E8765B500E0E18A /* UHFBSTVListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHFBSTVListViewController.h; sourceTree = "<group>"; };
 		14F0B8C00E8765B500E0E18A /* UHFBSTVListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHFBSTVListViewController.m; sourceTree = "<group>"; };
 		14F0B8E20E8767E800E0E18A /* UHFBSTVListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UHFBSTVListView.xib; sourceTree = "<group>"; };
-		14F0B97A0E87742F00E0E18A /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
-		14F0B97B0E87742F00E0E18A /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* TVListingsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVListingsAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* TVListingsAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVListingsAppDelegate.m; sourceTree = "<group>"; };
@@ -236,6 +246,8 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */,
 				144940640EE98299009F1BED /* SystemConfiguration.framework in Frameworks */,
+				14D248810F92659F0043A05B /* QuartzCore.framework in Frameworks */,
+				1404B1751001309F00E133B9 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +265,8 @@
 				14F0B5FE0E868A6A00E0E18A /* TVProgram.m */,
 				14F0B6490E868F7400E0E18A /* TVProgramCell.h */,
 				14F0B64A0E868F7400E0E18A /* TVProgramCell.m */,
+				1404B20D10013CE200E133B9 /* TVProgramCellSelectedBackgroundView.h */,
+				1404B20E10013CE200E133B9 /* TVProgramCellSelectedBackgroundView.m */,
 				149F659F0EE2A22D00327D14 /* TVProgramCellMedium.h */,
 				149F65A00EE2A22D00327D14 /* TVProgramCellMedium.m */,
 				149F65A20EE2A24400327D14 /* TVProgramCellLarge.h */,
@@ -329,6 +343,8 @@
 				1476D59B0EBB457200A7E386 /* RKLMatchEnumerator.m */,
 				14493F660EE9811F009F1BED /* Reachability.h */,
 				14493F670EE9811F009F1BED /* Reachability.m */,
+				1404B21310013E4200E133B9 /* TableCellDrawing.h */,
+				1404B21410013E4200E133B9 /* TableCellDrawing.m */,
 				149F610B0EE1CB8300327D14 /* Debug.h */,
 			);
 			name = Utils;
@@ -350,8 +366,8 @@
 			children = (
 				14F0B82F0E87514800E0E18A /* NSString+XMLExtensions.h */,
 				14F0B8300E87514800E0E18A /* NSString+XMLExtensions.m */,
-				1453D83B0E8A8D3D0099DFBF /* XMLParser.h */,
-				1453D83C0E8A8D3D0099DFBF /* XMLParser.m */,
+				1404B16010012D8F00E133B9 /* FeedParser.h */,
+				1404B16110012D8F00E133B9 /* FeedParser.m */,
 			);
 			name = XML;
 			sourceTree = "<group>";
@@ -372,9 +388,9 @@
 				142A5F1F0E88E08200FC1188 /* fm.png */,
 				142A5F040E88DBC500FC1188 /* settings.png */,
 				149AC1E70E98CB560061AEDF /* crown.png */,
-				14F0B97A0E87742F00E0E18A /* up.png */,
-				14F0B97B0E87742F00E0E18A /* down.png */,
-				142A5AD80E87E14900FC1188 /* now.png */,
+				1404B3011001471A00E133B9 /* up.png */,
+				1404B3001001471A00E133B9 /* down.png */,
+				1454BEF3100149760040C515 /* now.png */,
 				14C3FB130F0164F900B01BB6 /* uiccalendar_background.png */,
 				14C3FB140F0164F900B01BB6 /* uiccalendar_main.png */,
 				14C3FB150F0164F900B01BB6 /* uiccalendar_title.png */,
@@ -453,10 +469,12 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				144940630EE98299009F1BED /* SystemConfiguration.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765070DF74369002DB57D /* CoreGraphics.framework */,
+				14D248800F92659F0043A05B /* QuartzCore.framework */,
+				144940630EE98299009F1BED /* SystemConfiguration.framework */,
+				1404B1741001309F00E133B9 /* libxml2.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -507,13 +525,10 @@
 				14F0B40E0E866E9500E0E18A /* TVListView.xib in Resources */,
 				14F0B80F0E874F1500E0E18A /* DetailsView.xib in Resources */,
 				14F0B8E30E8767E800E0E18A /* UHFBSTVListView.xib in Resources */,
-				14F0B97C0E87742F00E0E18A /* up.png in Resources */,
-				14F0B97D0E87742F00E0E18A /* down.png in Resources */,
 				142A571C0E879E4200FC1188 /* SettingView.xib in Resources */,
 				142A581E0E87B5D900FC1188 /* Localizable.strings in Resources */,
 				147324260E8985A700130051 /* TVSearchView.xib in Resources */,
 				142A59260E87CA7B00FC1188 /* SearchBookmarkView.xib in Resources */,
-				142A5AD90E87E14900FC1188 /* now.png in Resources */,
 				142A5B290E87EA3E00FC1188 /* BSDigital1TVListView.xib in Resources */,
 				142A5B2B0E87EA7800FC1188 /* BSDigital2TVListView.xib in Resources */,
 				142A5B7E0E87ED3D00FC1188 /* CS1TVListView.xib in Resources */,
@@ -552,6 +567,9 @@
 				14C3FB300F0164F900B01BB6 /* uiccalendar_left_arrow.png in Resources */,
 				14C3FB310F0164F900B01BB6 /* uiccalendar_right_arrow.png in Resources */,
 				14C3FB320F0164F900B01BB6 /* uiccalendar_calendar_button.png in Resources */,
+				1404B3021001471A00E133B9 /* down.png in Resources */,
+				1404B3031001471A00E133B9 /* up.png in Resources */,
+				1454BEF4100149760040C515 /* now.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +602,6 @@
 				142A5B230E87E84D00FC1188 /* FMRadioListViewController.m in Sources */,
 				142A603C0E8900FD00FC1188 /* WaitingView.m in Sources */,
 				142A60B70E890B3100FC1188 /* NSString_FJNFullwidthHalfwidth.m in Sources */,
-				1453D83D0E8A8D3D0099DFBF /* XMLParser.m in Sources */,
 				149AC20E0E98D2430061AEDF /* RegionSettingViewController.m in Sources */,
 				149AC37F0E98F4AF0061AEDF /* PrimeTimeSettingViewController.m in Sources */,
 				149AC4BD0E990FC70061AEDF /* TimeWidthSettingViewController.m in Sources */,
@@ -596,6 +613,9 @@
 				14493F680EE9811F009F1BED /* Reachability.m in Sources */,
 				148900940F3EC1710085B0EA /* UICCalendarPicker.m in Sources */,
 				148900950F3EC1710085B0EA /* UICCalendarPickerDateButton.m in Sources */,
+				1404B16210012D8F00E133B9 /* FeedParser.m in Sources */,
+				1404B20F10013CE200E133B9 /* TVProgramCellSelectedBackgroundView.m in Sources */,
+				1404B21510013E4200E133B9 /* TableCellDrawing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,12 +667,13 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Katsumi Kishikawa";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "079CE7D8-0A89-4399-8239-69BFAD183E10";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "56DD5709-6F51-455B-B301-C65B856A0F8C";
 				SDKROOT = iphoneos2.1;
 			};
 			name = Distribution;
@@ -671,6 +692,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TVListings_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = TVListings;
 			};
 			name = Distribution;
@@ -691,6 +716,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TVListings_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = TVListings;
 			};
 			name = Debug;
@@ -709,6 +738,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TVListings_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = TVListings;
 			};
 			name = Release;
@@ -726,7 +759,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B05E5D1-7972-42FD-A08B-29461C265D73";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F064D1B5-1E56-48D6-B621-293C692A49CE";
 				SDKROOT = iphoneos2.1;
 			};
 			name = Debug;
@@ -737,12 +770,13 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Katsumi Kishikawa";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B05E5D1-7972-42FD-A08B-29461C265D73";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F064D1B5-1E56-48D6-B621-293C692A49CE";
 				SDKROOT = iphoneos2.1;
 			};
 			name = Release;
