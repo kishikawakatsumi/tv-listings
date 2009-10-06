@@ -11,6 +11,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Debug.h"
 
+#if DEBUG
+#define SERVICE_URI @"http://2nddsp-dev.appspot.com/epg"
+#else
+//#define SERVICE_URI @"http://tv.nikkansports.com/tv.php"
+#define SERVICE_URI @"http://2nddsp.appspot.com/epg"
+#endif
+
 @implementation TVListViewController
 
 @synthesize tvListView;
@@ -65,8 +72,10 @@
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
 	Settings *settings = sharedTVListingsApp.settings;
 	return [NSString stringWithFormat:
-			@"http://tv.nikkansports.com/tv.php?mode=04&site=007&template=rss&pageCharSet=UTF8&area=%@&category=%@&lhour=%d&shour=%d&sdate=%@", 
-			settings.area, self.category, sharedTVListingsApp.lhour, sharedTVListingsApp.shour, sharedTVListingsApp.sdate];
+//          @"%@?mode=04&site=007&template=rss&pageCharSet=UTF8&area=%@&category=%@&lhour=%d&shour=%d&sdate=%@", 
+//          SERVICE_URI, settings.area, self.category, sharedTVListingsApp.lhour, sharedTVListingsApp.shour, sharedTVListingsApp.sdate];
+            @"%@?category=%@&area=%@&sdate=%@&shour=%d&lhour=%d", 
+            SERVICE_URI, self.category, settings.area, sharedTVListingsApp.sdate, sharedTVListingsApp.shour, sharedTVListingsApp.lhour];
 }
 
 - (void)enableButtons {
@@ -384,6 +393,7 @@
 		
 	tvListView.frame = [self preferredSize];
 	[tvListView deselectRowAtIndexPath:[tvListView indexPathForSelectedRow] animated:YES];
+    [tvListView flashScrollIndicators];
 	
 	if (!shouldNotReflesh) {
 		[NSThread detachNewThreadSelector:@selector(_refleshData) toTarget:self withObject:nil];

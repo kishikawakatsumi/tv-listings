@@ -187,7 +187,6 @@ static xmlSAXHandler _saxHandlerStruct = {
     
     // item
     if (strncmp((char*)localname, "item", sizeof("item")) == 0) {
-		
         isItem = NO;
         currentItem = nil;
         

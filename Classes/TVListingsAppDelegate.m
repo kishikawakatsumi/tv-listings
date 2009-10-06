@@ -234,17 +234,17 @@ static NSArray *timeList = NULL;
 	
 	tabBarController.moreNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	
-	if (settings.orderOfViewControllers) {
-		NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:TAB_VIEW_CONTROLLERS];
-		for (UINavigationController *controller in tabBarController.viewControllers) {
-			[dictionary setObject:controller forKey:[[controller.topViewController class] description]];
-		}
-		NSMutableArray *controllers = [NSMutableArray arrayWithCapacity:TAB_VIEW_CONTROLLERS];
-		for (NSString *controllerName in settings.orderOfViewControllers) {
-			[controllers addObject:[dictionary objectForKey:controllerName]];
-		}
-		tabBarController.viewControllers = controllers;
-	}
+//	if (settings.orderOfViewControllers) {
+//		NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:TAB_VIEW_CONTROLLERS];
+//		for (UINavigationController *controller in tabBarController.viewControllers) {
+//			[dictionary setObject:controller forKey:[[controller.topViewController class] description]];
+//		}
+//		NSMutableArray *controllers = [NSMutableArray arrayWithCapacity:TAB_VIEW_CONTROLLERS];
+//		for (NSString *controllerName in settings.orderOfViewControllers) {
+//			[controllers addObject:[dictionary objectForKey:controllerName]];
+//		}
+//		tabBarController.viewControllers = controllers;
+//	}
 	
     [window addSubview:tabBarController.view];
 }

@@ -8,9 +8,7 @@
 
 #import "NSString+XMLExtensions.h"
 
-
 @implementation NSString(XMLExtensions) 
-
 
 + (NSString *)encodeXMLCharactersIn:(NSString *)source {
 	if ( ![source isKindOfClass:[NSString class]] ||!source )
@@ -18,43 +16,43 @@
 	
 	NSString *result = [NSString stringWithString:source];
 	
-	if ( [result rangeOfString:@"&"].location != NSNotFound )
+	if ([result rangeOfString:@"&"].location != NSNotFound)
 		result = [[result componentsSeparatedByString: @"&"] componentsJoinedByString: @"&amp;"];	
 	
-	if ( [result rangeOfString:@"<"].location != NSNotFound )
+	if ([result rangeOfString:@"<"].location != NSNotFound)
 		result = [[result componentsSeparatedByString: @"<"] componentsJoinedByString: @"&lt;"];	
 	
-	if ( [result rangeOfString:@">"].location != NSNotFound )
+	if ([result rangeOfString:@">"].location != NSNotFound)
 		result = [[result componentsSeparatedByString: @">"] componentsJoinedByString: @"&gt;"];	
 	
-	if ( [result rangeOfString:@"\""].location != NSNotFound )
+	if ([result rangeOfString:@"\""].location != NSNotFound)
 		result = [[result componentsSeparatedByString: @"\""] componentsJoinedByString: @"&quot;"];	
 	
-	if ( [result rangeOfString:@"'"].location != NSNotFound )
+	if ([result rangeOfString:@"'"].location != NSNotFound)
 		result = [[result componentsSeparatedByString: @"'"] componentsJoinedByString: @"&apos;"];	
 	
 	return result;
 }
 
-+ (NSString *) decodeXMLCharactersIn:(NSString *)source {
-	if ( ![source isKindOfClass:[NSString class]] ||!source )
++ (NSString *)decodeXMLCharactersIn:(NSString *)source {
+	if (![source isKindOfClass:[NSString class]] ||!source)
 		return @"";	
 
 	NSString *result = [NSString stringWithString:source];
 	
-	if ( [result rangeOfString:@"&amp;"].location != NSNotFound )
+	if ([result rangeOfString:@"&amp;"].location != NSNotFound)
 		result = [[result componentsSeparatedByString: @"&amp;"] componentsJoinedByString: @"&"];	
 	
-	if ( [result rangeOfString:@"&lt;"].location != NSNotFound )
+	if ([result rangeOfString:@"&lt;"].location != NSNotFound)
 		result = [[result componentsSeparatedByString: @"&lt;"] componentsJoinedByString: @"<"];	
 	
-	if ( [result rangeOfString:@"&gt;"].location != NSNotFound )
+	if ([result rangeOfString:@"&gt;"].location != NSNotFound)
 		result = [[result componentsSeparatedByString: @"&gt;"] componentsJoinedByString: @">"];	
 	
-	if ( [result rangeOfString:@"&quot;"].location != NSNotFound )
+	if ([result rangeOfString:@"&quot;"].location != NSNotFound)
 		result = [[result componentsSeparatedByString: @"&quot;"] componentsJoinedByString: @"\""];	
 	
-	if ( [result rangeOfString:@"&apos;"].location != NSNotFound )
+	if ([result rangeOfString:@"&apos;"].location != NSNotFound)
 		result = [[result componentsSeparatedByString: @"&apos;"] componentsJoinedByString: @"'"];	
 	
 	return result;

@@ -5,6 +5,12 @@
 #import "Settings.h"
 #import "Debug.h"
 
+#if DEBUG
+#define SERVICE_URI @"http://2nddsp-dev.appspot.com/search"
+#else
+#define SERVICE_URI @"http://2nddsp.appspot.com/search"
+#endif
+
 @implementation TVSearchViewController
 
 @synthesize tvSearchBar;
@@ -37,8 +43,10 @@
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
 	Settings *settings = sharedTVListingsApp.settings;
 	return [NSString stringWithFormat:
-			@"http://tv.nikkansports.com/tv.php?mode=10&site=007&sort=d&shour=%d&lhour=24&area=%@&ldate=8&key=%@&template=rss&category=all&pageCharSet=UTF8",
-			sharedTVListingsApp.shour, settings.area, [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//          @"http://tv.nikkansports.com/tv.php?mode=10&site=007&sort=d&shour=%d&lhour=24&area=%@&ldate=8&key=%@&template=rss&category=all&pageCharSet=UTF8",
+//          sharedTVListingsApp.shour, settings.area, [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            @"%@?key=%@&category=all&area=%@", 
+            SERVICE_URI, [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], settings.area];
 }
 
 - (void)buildMoveTimeButtons {
@@ -101,7 +109,6 @@
 	
 	[searchBar resignFirstResponder];
 	
-	//[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refleshData:) userInfo:nil repeats:NO];
 	[NSThread detachNewThreadSelector:@selector(_refleshData) toTarget:self withObject:nil];
 }
 
@@ -127,6 +134,9 @@
 	} else {
 		[tvListView setRowHeight:76.0f];
 	}
+    
+	[self.tvListView deselectRowAtIndexPath:[self.tvListView indexPathForSelectedRow] animated:YES];
+    [self.tvListView flashScrollIndicators];
 	
 	[self.tvListView reloadData];
 }

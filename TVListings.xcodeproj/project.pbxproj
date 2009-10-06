@@ -674,7 +674,7 @@
 				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "56DD5709-6F51-455B-B301-C65B856A0F8C";
-				SDKROOT = iphoneos2.1;
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = Distribution;
 		};
@@ -759,8 +759,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F064D1B5-1E56-48D6-B621-293C692A49CE";
-				SDKROOT = iphoneos2.1;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "91C7C51D-9A84-4BF5-AE22-DB7854C29849";
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = Debug;
 		};
@@ -776,8 +776,8 @@
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F064D1B5-1E56-48D6-B621-293C692A49CE";
-				SDKROOT = iphoneos2.1;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "91C7C51D-9A84-4BF5-AE22-DB7854C29849";
+				SDKROOT = iphoneos2.2.1;
 			};
 			name = Release;
 		};

@@ -53,33 +53,45 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
 	Settings *settings = sharedTVListingsApp.settings;
+    
+    NSString *identifier = [NSString stringWithFormat:@"%d%d", indexPath.section, indexPath.row];
 	
 	if (indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2) {
-		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"Cell"] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		
-		if (indexPath.section == 0) {
-			cell.text = [[TVListingsAppDelegate regionList] objectAtIndex:[settings.area intValue] -1];
-		} else if (indexPath.section == 1) {
-			cell.text = [NSString stringWithFormat:@"%@ - %@", settings.primeTimeFrom, settings.primeTimeTo];
-		} else {
-			cell.text = [NSString stringWithFormat:NSLocalizedString(@"TimeWidthFormat", nil), settings.lhour];
-		}
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:identifier] autorelease];
+            
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            
+            if (indexPath.section == 0) {
+                cell.text = [[TVListingsAppDelegate regionList] objectAtIndex:[settings.area intValue] -1];
+            } else if (indexPath.section == 1) {
+                cell.text = [NSString stringWithFormat:@"%@ - %@", settings.primeTimeFrom, settings.primeTimeTo];
+            } else {
+                cell.text = [NSString stringWithFormat:NSLocalizedString(@"TimeWidthFormat", nil), settings.lhour];
+            }
+        }
 		
 		return cell;
 	} else {
-		UITableViewCell *cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"FontSizeCell"] autorelease];
-		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-		UISegmentedControl *fontSizeSelector = [[[UISegmentedControl alloc]
-												 initWithItems:[NSArray arrayWithObjects:@"S", @"M", @"L", @"XL", nil]] autorelease];
-		[fontSizeSelector setFrame:CGRectMake(9.0f, 0.0f, 302.0f, 45.0f)];
-		[fontSizeSelector setSelectedSegmentIndex:settings.fontSize];
-		[fontSizeSelector addTarget:self action:@selector(fontSizeChanged:) forControlEvents:UIControlEventValueChanged];
-		[cell addSubview:fontSizeSelector];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:identifier] autorelease];
+
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            UISegmentedControl *fontSizeSelector = [[[UISegmentedControl alloc]
+                                                     initWithItems:[NSArray arrayWithObjects:@"S", @"M", @"L", @"XL", nil]] autorelease];
+            [fontSizeSelector setFrame:CGRectMake(9.0f, 0.0f, 302.0f, 45.0f)];
+            [fontSizeSelector setSelectedSegmentIndex:settings.fontSize];
+            [fontSizeSelector addTarget:self action:@selector(fontSizeChanged:) forControlEvents:UIControlEventValueChanged];
+            [cell addSubview:fontSizeSelector];
+        }
 		
 		return cell;
 	}
-
 }
 
 #pragma mark <UITableViewDelegate> Methods
