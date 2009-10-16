@@ -1,0 +1,27 @@
+= TV Listings (iPhone Application)
+
+TV Listings shows list of on-air TV programs in Japan. Automatically matched  time of day and region.
+
+You can see before or after the list on time of day. 
+
+TV Listings available to VHF, BS, CS, AM and FM Radio broadcast station.
+
+== Author 
+KISHIKAWA Katsumi
+http://d.hatena.ne.jp/KishikawaKatsumi/ (in Japanese)
+
+== License
+The new BSD license
+
+== 3rd parties
+==== Reachability
+Reachability is copied from Apple's sample code: Reachability.
+
+==== NSString_FJNFullwidthHalfwidth
+Author: FUJIDANA
+URL: http://sourceforge.jp/projects/kyoponutilities/
+
+==== RegexKitLite
+Author: John Engelhart
+URL: http://regexkit.sourceforge.net/
+License: BSD
