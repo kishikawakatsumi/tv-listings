@@ -11,11 +11,16 @@ TV Listings available to VHF, BS, CS, AM and FM Radio broadcast station.
 # License:: The new BSD license
 
 == 3rd parties
+
 ==== Reachability
 Reachability is copied from Apple's sample code: Reachability.
+
+
 ==== NSString_FJNFullwidthHalfwidth
 - Author: FUJIDANA
 - URL: http://sourceforge.jp/projects/kyoponutilities
+
+
 ==== RegexKitLite
 - Author: John Engelhart
 - URL: http://regexkit.sourceforge.net
