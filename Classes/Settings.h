@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-#define CURRENT_VERSION 120
+#define CURRENT_VERSION 140
 
 typedef enum {
     SettingsFontSizeSmall = 0,

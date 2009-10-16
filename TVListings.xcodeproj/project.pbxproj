@@ -56,6 +56,7 @@
 		147324260E8985A700130051 /* TVSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 147324250E8985A700130051 /* TVSearchView.xib */; };
 		1476D58D0EBB451800A7E386 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1476D58C0EBB451800A7E386 /* RegexKitLite.m */; };
 		1476D59C0EBB457200A7E386 /* RKLMatchEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1476D59B0EBB457200A7E386 /* RKLMatchEnumerator.m */; };
+		1478BBB01088F2CF00964F4D /* DescriptionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478BBAF1088F2CF00964F4D /* DescriptionBuilder.m */; };
 		148900940F3EC1710085B0EA /* UICCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 148900910F3EC1710085B0EA /* UICCalendarPicker.m */; };
 		148900950F3EC1710085B0EA /* UICCalendarPickerDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 148900930F3EC1710085B0EA /* UICCalendarPickerDateButton.m */; };
 		149AC1E80E98CB560061AEDF /* crown.png in Resources */ = {isa = PBXBuildFile; fileRef = 149AC1E70E98CB560061AEDF /* crown.png */; };
@@ -172,6 +173,8 @@
 		1476D58C0EBB451800A7E386 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		1476D59A0EBB457200A7E386 /* RKLMatchEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKLMatchEnumerator.h; sourceTree = "<group>"; };
 		1476D59B0EBB457200A7E386 /* RKLMatchEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKLMatchEnumerator.m; sourceTree = "<group>"; };
+		1478BBAE1088F2CF00964F4D /* DescriptionBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionBuilder.h; sourceTree = "<group>"; };
+		1478BBAF1088F2CF00964F4D /* DescriptionBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionBuilder.m; sourceTree = "<group>"; };
 		148900900F3EC1710085B0EA /* UICCalendarPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPicker.h; sourceTree = "<group>"; };
 		148900910F3EC1710085B0EA /* UICCalendarPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICCalendarPicker.m; sourceTree = "<group>"; };
 		148900920F3EC1710085B0EA /* UICCalendarPickerDateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCalendarPickerDateButton.h; sourceTree = "<group>"; };
@@ -345,6 +348,8 @@
 				14493F670EE9811F009F1BED /* Reachability.m */,
 				1404B21310013E4200E133B9 /* TableCellDrawing.h */,
 				1404B21410013E4200E133B9 /* TableCellDrawing.m */,
+				1478BBAE1088F2CF00964F4D /* DescriptionBuilder.h */,
+				1478BBAF1088F2CF00964F4D /* DescriptionBuilder.m */,
 				149F610B0EE1CB8300327D14 /* Debug.h */,
 			);
 			name = Utils;
@@ -616,6 +621,7 @@
 				1404B16210012D8F00E133B9 /* FeedParser.m in Sources */,
 				1404B20F10013CE200E133B9 /* TVProgramCellSelectedBackgroundView.m in Sources */,
 				1404B21510013E4200E133B9 /* TableCellDrawing.m in Sources */,
+				1478BBB01088F2CF00964F4D /* DescriptionBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

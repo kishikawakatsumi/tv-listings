@@ -94,10 +94,12 @@ static NSDictionary *abbreviationMappings = NULL;
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 		
 		NSURL *URL = [NSURL URLWithString:feedURL];
+        LOG(@"feed URL: <%@>", URL);
 		
 		FeedParser *parser = [[FeedParser alloc] initWithRequest:[NSURLRequest requestWithURL:URL]];
 		[parser start];
 		NSArray *items = [[parser channel] objectForKey:@"items"];
+        LOG(@"feed data: %@", items);
 		
 		programs = [NSMutableDictionary dictionaryWithCapacity:10];
 		for (id item in items) {
@@ -114,7 +116,7 @@ static NSDictionary *abbreviationMappings = NULL;
 			if ([link length] > 0) {
 				program.link = link;
 			} else {
-				break;
+				//break;
 			}
 			
 			NSString *text = [item objectForKey:@"title"];

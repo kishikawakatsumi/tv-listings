@@ -1,7 +1,7 @@
 #import "TVListingsAppDelegate.h"
 #import "Debug.h"
 
-#define TAB_VIEW_CONTROLLERS 11
+#define TAB_VIEW_CONTROLLERS 7
 
 @implementation TVListingsAppDelegate
 
@@ -186,7 +186,7 @@ static NSArray *timeList = NULL;
 			newSettings.primeTimeTo = settings.primeTimeTo;
 			newSettings.fontSize = SettingsFontSizeSmall;
 			newSettings.keywordHistory = settings.keywordHistory;
-			newSettings.orderOfViewControllers = settings.orderOfViewControllers;
+			//newSettings.orderOfViewControllers = settings.orderOfViewControllers;
 			self.settings = newSettings;
 		}
 	} else {
@@ -234,17 +234,17 @@ static NSArray *timeList = NULL;
 	
 	tabBarController.moreNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	
-//	if (settings.orderOfViewControllers) {
-//		NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:TAB_VIEW_CONTROLLERS];
-//		for (UINavigationController *controller in tabBarController.viewControllers) {
-//			[dictionary setObject:controller forKey:[[controller.topViewController class] description]];
-//		}
-//		NSMutableArray *controllers = [NSMutableArray arrayWithCapacity:TAB_VIEW_CONTROLLERS];
-//		for (NSString *controllerName in settings.orderOfViewControllers) {
-//			[controllers addObject:[dictionary objectForKey:controllerName]];
-//		}
-//		tabBarController.viewControllers = controllers;
-//	}
+	if (settings.orderOfViewControllers) {
+		NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:TAB_VIEW_CONTROLLERS];
+		for (UINavigationController *controller in tabBarController.viewControllers) {
+			[dictionary setObject:controller forKey:[[controller.topViewController class] description]];
+		}
+		NSMutableArray *controllers = [NSMutableArray arrayWithCapacity:TAB_VIEW_CONTROLLERS];
+		for (NSString *controllerName in settings.orderOfViewControllers) {
+			[controllers addObject:[dictionary objectForKey:controllerName]];
+		}
+		tabBarController.viewControllers = controllers;
+	}
 	
     [window addSubview:tabBarController.view];
 }

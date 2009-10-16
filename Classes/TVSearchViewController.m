@@ -43,8 +43,6 @@
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
 	Settings *settings = sharedTVListingsApp.settings;
 	return [NSString stringWithFormat:
-//          @"http://tv.nikkansports.com/tv.php?mode=10&site=007&sort=d&shour=%d&lhour=24&area=%@&ldate=8&key=%@&template=rss&category=all&pageCharSet=UTF8",
-//          sharedTVListingsApp.shour, settings.area, [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             @"%@?key=%@&category=all&area=%@", 
             SERVICE_URI, [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], settings.area];
 }

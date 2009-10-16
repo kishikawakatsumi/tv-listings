@@ -14,7 +14,6 @@
 #if DEBUG
 #define SERVICE_URI @"http://2nddsp-dev.appspot.com/epg"
 #else
-//#define SERVICE_URI @"http://tv.nikkansports.com/tv.php"
 #define SERVICE_URI @"http://2nddsp.appspot.com/epg"
 #endif
 
@@ -72,8 +71,6 @@
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
 	Settings *settings = sharedTVListingsApp.settings;
 	return [NSString stringWithFormat:
-//          @"%@?mode=04&site=007&template=rss&pageCharSet=UTF8&area=%@&category=%@&lhour=%d&shour=%d&sdate=%@", 
-//          SERVICE_URI, settings.area, self.category, sharedTVListingsApp.lhour, sharedTVListingsApp.shour, sharedTVListingsApp.sdate];
             @"%@?category=%@&area=%@&sdate=%@&shour=%d&lhour=%d", 
             SERVICE_URI, self.category, settings.area, sharedTVListingsApp.sdate, sharedTVListingsApp.shour, sharedTVListingsApp.lhour];
 }
@@ -119,7 +116,6 @@
 
 - (IBAction)refleshData:(id)sender {
 	[self performSelectorOnMainThread:@selector(willRefleshData) withObject:nil waitUntilDone:YES];
-	LOG(@"feed: <%@>", [self feedURL]);
 	self.programs = [manager getTVList:[self feedURL] dateIndexed:[self dateIndexed]];
 	[tvListView reloadData];
 	[self performSelectorOnMainThread:@selector(didRefleshData) withObject:nil waitUntilDone:YES];
@@ -354,6 +350,9 @@
 	cell.time = program.time;
 	cell.date = program.date;
 	cell.category = program.category;
+    if ([program.link length] == 0) {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
     return cell;
 }
 
