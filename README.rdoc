@@ -6,26 +6,16 @@ You can see before or after the list on time of day.
 
 TV Listings available to VHF, BS, CS, AM and FM Radio broadcast station.
 
-== Author 
-KISHIKAWA Katsumi
-
-http://d.hatena.ne.jp/KishikawaKatsumi[http://d.hatena.ne.jp/KishikawaKatsumi] (in Japanese)
-
-== License
-The new BSD license
+# Author:: KISHIKAWA Katsumi
+# URL:: http://d.hatena.ne.jp/KishikawaKatsumi
+# License:: The new BSD license
 
 == 3rd parties
 ==== Reachability
 Reachability is copied from Apple's sample code: Reachability.
-
 ==== NSString_FJNFullwidthHalfwidth
-Author: FUJIDANA
-
-URL: http://sourceforge.jp/projects/kyoponutilities/[http://sourceforge.jp/projects/kyoponutilities]
-
+- Author: FUJIDANA
+- URL: http://sourceforge.jp/projects/kyoponutilities
 ==== RegexKitLite
-Author: John Engelhart
-
-URL: http://regexkit.sourceforge.net/[http://regexkit.sourceforge.net]
-
-License: BSD
+- Author: John Engelhart
+- URL: http://regexkit.sourceforge.net
