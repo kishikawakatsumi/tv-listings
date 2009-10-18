@@ -96,6 +96,7 @@
 		NSDateComponents *offsetComponent = [[NSDateComponents alloc] init];
 		[offsetComponent setDay:1];
 		[self setNavigationBarTitle:[formatter stringFromDate:[gregorian dateByAddingComponents:offsetComponent toDate:sharedTVListingsApp.baseDate options:0]]];
+        [offsetComponent release];
 	} else {
 		[self setNavigationBarTitle:[formatter stringFromDate:sharedTVListingsApp.baseDate]];
 	}

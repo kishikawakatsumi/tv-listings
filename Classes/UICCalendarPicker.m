@@ -426,20 +426,21 @@ static UIColor *holidayColor;
 	[self setUpCalendarWithDate:pageDate];
 	
 	if (animated) {
-		[self setAlpha:0.0f];
 		[aView addSubview:self];
 		
 		CGRect frame = [self frame];
 		frame.origin.x = point.x;
-		frame.origin.y = point.y - frame.size.height / 2;
+		frame.origin.y = point.y;
 		self.frame = frame;
 		
+        self.alpha = 0.0f;
+        self.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
+        
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.3f];
 		[UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:self cache:NO];
 		[self setAlpha:1.0f];
-		frame.origin.y = frame.origin.y + frame.size.height / 2;
-		self.frame = frame;
+        self.transform = CGAffineTransformIdentity;
 		[UIView commitAnimations];
 	} else {
 		CGRect frame = [self frame];
@@ -457,10 +458,8 @@ static UIColor *holidayColor;
 		[UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
 		[UIView setAnimationDuration:0.3f];
 		[UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:self cache:NO];
-		[self setAlpha:0.0f];
-		CGRect frame = [self frame];
-		frame.origin.y = frame.origin.y - frame.size.height / 2;
-		self.frame = frame;
+        self.alpha = 0.0f;
+        self.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
 		[UIView commitAnimations];
 	} else {
 		[self removeFromSuperview];

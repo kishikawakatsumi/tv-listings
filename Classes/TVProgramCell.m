@@ -70,6 +70,7 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
 	[[UIColor colorWithRed:0.0f green:0.2f blue:0.8f alpha:1.0f] set];
 	[time drawInRect:CGRectMake(2.0f, 2.0f, 74.0f, 21.0f) withFont:[UIFont boldSystemFontOfSize:12.0f]];
 	[[UIColor blackColor] set];

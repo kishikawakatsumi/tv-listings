@@ -678,7 +678,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 2.2.1;
-				OTHER_LDFLAGS = "-licucore";
+				"OTHER_LDFLAGS[sdk=iphoneos3.1.2][arch=*]" = (
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.2.1.sdk/usr/lib/libxml2.dylib",
+					"-licucore",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator3.1.2][arch=*]" = (
+					"-lxml2",
+					"-licucore",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "56DD5709-6F51-455B-B301-C65B856A0F8C";
 				SDKROOT = iphoneos3.1.2;
@@ -765,7 +772,14 @@
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 2.2.1;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-licucore";
+				"OTHER_LDFLAGS[sdk=iphoneos3.1.2][arch=*]" = (
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.2.1.sdk/usr/lib/libxml2.dylib",
+					"-licucore",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator3.1.2][arch=*]" = (
+					"-lxml2",
+					"-licucore",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1.2;
@@ -783,7 +797,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 2.2.1;
-				OTHER_LDFLAGS = "-licucore";
+				"OTHER_LDFLAGS[sdk=iphoneos3.1.2][arch=*]" = (
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.2.1.sdk/usr/lib/libxml2.dylib",
+					"-licucore",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator3.1.2][arch=*]" = (
+					"-lxml2",
+					"-licucore",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.1.2;

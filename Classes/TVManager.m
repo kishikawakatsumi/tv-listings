@@ -100,6 +100,7 @@ static NSDictionary *abbreviationMappings = NULL;
 		[parser start];
 		NSArray *items = [[parser channel] objectForKey:@"items"];
         LOG(@"feed data: %@", items);
+        [parser release];
 		
 		programs = [NSMutableDictionary dictionaryWithCapacity:10];
 		for (id item in items) {
