@@ -19,7 +19,6 @@
 }
 
 - (void)viewDidLoad {
-    NSLog(@"viewDidLoad");
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Settings", nil);
 }
