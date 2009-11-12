@@ -9,6 +9,8 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithStyle:UITableViewStyleGrouped];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     return self;
 }
 
@@ -17,6 +19,7 @@
 }
 
 - (void)viewDidLoad {
+    NSLog(@"viewDidLoad");
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Settings", nil);
 }
