@@ -6,7 +6,6 @@
 
 - (void)dealloc {
 	LOG_CURRENT_METHOD;
-	[self.tableView setDelegate:nil];
     [super dealloc];
 }
 

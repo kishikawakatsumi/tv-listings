@@ -48,8 +48,7 @@ static NSArray *timeList = NULL;
 	if (!TVListingsApp) {
 		TVListingsApp = [super init];
 		
-		sharedDetailsViewController = [[DetailsViewController alloc] initWithNibName:@"DetailsView" bundle:nil];
-		sharedDetailsViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+		sharedDetailsViewController = [[DetailsViewController alloc] init];
 		
 		self.shour = [self getNowTimeOfDay];
 		self.sdate = [self getNowDate];

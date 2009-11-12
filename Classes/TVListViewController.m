@@ -2,9 +2,6 @@
 #import "TVManager.h"
 #import "TVProgram.h"
 #import "TVProgramCell.h"
-#import "TVProgramCellMedium.h"
-#import "TVProgramCellLarge.h"
-#import "TVProgramCellExtraLarge.h"
 #import "DetailsViewController.h"
 #import "TVListingsAppDelegate.h"
 #import "UICCalendarPicker.h"
@@ -34,8 +31,6 @@
 	[programs release];
 	[manager release];
 	[moveTimeControl release];
-	[tvListView setDelegate:nil];
-	[tvListView release];
     [super dealloc];
 }
 
@@ -321,28 +316,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
 	Settings *settings = sharedTVListingsApp.settings;
-	TVProgramCell *cell;
-	if (settings.fontSize == SettingsFontSizeSmall) {
-		cell = (TVProgramCell *)[tableView dequeueReusableCellWithIdentifier:@"TVProgramCell"];
-		if (cell == nil) {
-			cell = [[[TVProgramCell alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 42.0f) reuseIdentifier:@"TVProgramCell"] autorelease];
-		}
-	} else if (settings.fontSize == SettingsFontSizeMedium) {
-		cell = (TVProgramCell *)[tableView dequeueReusableCellWithIdentifier:@"TVProgramCellMedium"];
-		if (cell == nil) {
-			cell = [[[TVProgramCellMedium alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f) reuseIdentifier:@"TVProgramCellMedium"] autorelease];
-		}
-	} else if (settings.fontSize == SettingsFontSizeLarge) {
-		cell = (TVProgramCell *)[tableView dequeueReusableCellWithIdentifier:@"TVProgramCellLarge"];
-		if (cell == nil) {
-			cell = [[[TVProgramCellLarge alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 66.0f) reuseIdentifier:@"TVProgramCellLarge"] autorelease];
-		}
-	} else {
-		cell = (TVProgramCell *)[tableView dequeueReusableCellWithIdentifier:@"TVProgramCellExtraLarge"];
-		if (cell == nil) {
-			cell = [[[TVProgramCellExtraLarge alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 76.0f) reuseIdentifier:@"TVProgramCellExtraLarge"] autorelease];
-		}
-	}
+	TVProgramCell *cell = (TVProgramCell *)[tableView dequeueReusableCellWithIdentifier:@"TVProgramCell"];
+    if (cell == nil) {
+        cell = [[[TVProgramCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"TVProgramCell"] autorelease];
+    }
+    
+    if (settings.fontSize == SettingsFontSizeSmall) {
+        cell.frame = CGRectMake(0.0f, 0.0f, 320.0f, 42.0f);
+    } else if (settings.fontSize == SettingsFontSizeMedium) {
+        cell.frame = CGRectMake(0.0f, 0.0f, 320.0f, 44.0f);
+    } else if (settings.fontSize == SettingsFontSizeLarge) {
+        cell.frame = CGRectMake(0.0f, 0.0f, 320.0f, 66.0f);
+    } else {
+        cell.frame = CGRectMake(0.0f, 0.0f, 320.0f, 76.0f);
+    }
+    
+    cell.fontSize = settings.fontSize;
 	
 	NSArray *keys = [programs allKeys];
 	TVProgram *program = [[programs objectForKey:[[keys sortedArrayUsingSelector:@selector(compare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
@@ -376,6 +365,34 @@
 
 #pragma mark <UIViewController> Methods
 
+- (void)loadView {
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 367.0f)];
+    self.view = contentView;
+    [contentView release];
+    
+    tvListView  = [[UITableView alloc] initWithFrame:contentView.frame];
+    tvListView.dataSource = self;
+    tvListView.delegate = self;
+    [contentView addSubview:tvListView];
+    [tvListView release];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+	gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	
+	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
+	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+	[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"JST"]];
+	[formatter setDateStyle:NSDateFormatterMediumStyle];
+	[self setNavigationBarTitle:[formatter stringFromDate:sharedTVListingsApp.baseDate]];
+	
+	self.manager = [[TVManager alloc] init];
+	
+	[self buildMoveTimeButtons];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
@@ -400,26 +417,6 @@
 	} else {
 		shouldNotReflesh = NO;
 	}
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-			
-	gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-	
-	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
-	NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-	[formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"JST"]];
-	[formatter setDateStyle:NSDateFormatterMediumStyle];
-	[self setNavigationBarTitle:[formatter stringFromDate:sharedTVListingsApp.baseDate]];
-	
-	self.manager = [[TVManager alloc] init];
-	
-	[self buildMoveTimeButtons];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)didReceiveMemoryWarning {

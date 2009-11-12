@@ -2,16 +2,17 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">528</int>
-		<string key="IBDocument.SystemVersion">10B504</string>
+		<string key="IBDocument.SystemVersion">10C540</string>
 		<string key="IBDocument.InterfaceBuilderVersion">740</string>
-		<string key="IBDocument.AppKitVersion">1038.2</string>
-		<string key="IBDocument.HIToolboxVersion">437.00</string>
+		<string key="IBDocument.AppKitVersion">1038.25</string>
+		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">62</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="174"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -52,17 +53,18 @@
 			<object class="IBUITabBarController" id="1034742383">
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUINavigationController" key="IBUISelectedViewController" id="224850086">
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="975953364">
-						<string key="IBUITitle">AM</string>
+				<object class="IBUINavigationController" key="IBUISelectedViewController" id="862495540">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="852111413">
+						<string key="IBUITitle">Settings</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">am.png</string>
+							<string key="NSResourceName">settings.png</string>
 						</object>
+						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="1034742383"/>
 					<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-					<object class="IBUINavigationBar" key="IBUINavigationBar" id="815656256">
+					<object class="IBUINavigationBar" key="IBUINavigationBar" id="1067917252">
 						<nil key="NSNextResponder"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{0, 0}</string>
@@ -73,12 +75,12 @@
 					</object>
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="IBUIViewController" id="22588525">
-							<object class="IBUINavigationItem" key="IBUINavigationItem" id="283103747">
-								<string key="IBUITitle">Root View Controller</string>
+						<object class="IBUIViewController" id="662324069">
+							<object class="IBUINavigationItem" key="IBUINavigationItem" id="1033984824">
+								<reference key="IBUINavigationBar"/>
+								<string key="IBUITitle">Settings</string>
 							</object>
-							<reference key="IBUIParentViewController" ref="224850086"/>
-							<string key="IBUINibName">AMRadioListView</string>
+							<reference key="IBUIParentViewController" ref="862495540"/>
 						</object>
 					</object>
 				</object>
@@ -91,6 +93,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">vhf.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -113,7 +116,6 @@
 									<string key="IBUITitle">VHF</string>
 								</object>
 								<reference key="IBUIParentViewController" ref="912750899"/>
-								<string key="IBUINibName">TVListView</string>
 							</object>
 						</object>
 					</object>
@@ -124,6 +126,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">bs1.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -143,7 +146,6 @@
 									<string key="IBUITitle">BS Digital 1</string>
 								</object>
 								<reference key="IBUIParentViewController" ref="407578018"/>
-								<string key="IBUINibName">BSDigital1TVListView</string>
 							</object>
 						</object>
 					</object>
@@ -154,6 +156,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">bs2.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -173,11 +176,39 @@
 									<string key="IBUITitle">BS Digital 2</string>
 								</object>
 								<reference key="IBUIParentViewController" ref="816987117"/>
-								<string key="IBUINibName">BSDigital2TVListView</string>
 							</object>
 						</object>
 					</object>
-					<reference ref="224850086"/>
+					<object class="IBUINavigationController" id="224850086">
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="975953364">
+							<string key="IBUITitle">AM</string>
+							<object class="NSCustomResource" key="IBUIImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">am.png</string>
+							</object>
+							<reference key="IBUITabBar"/>
+						</object>
+						<reference key="IBUIParentViewController" ref="1034742383"/>
+						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+						<object class="IBUINavigationBar" key="IBUINavigationBar" id="815656256">
+							<nil key="NSNextResponder"/>
+							<int key="NSvFlags">256</int>
+							<string key="NSFrameSize">{0, 0}</string>
+							<bool key="IBUIOpaque">NO</bool>
+							<bool key="IBUIClipsSubviews">YES</bool>
+							<bool key="IBUIMultipleTouchEnabled">YES</bool>
+							<int key="IBUIBarStyle">1</int>
+						</object>
+						<object class="NSMutableArray" key="IBUIViewControllers">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIViewController" id="22588525">
+								<object class="IBUINavigationItem" key="IBUINavigationItem" id="283103747">
+									<string key="IBUITitle">Root View Controller</string>
+								</object>
+								<reference key="IBUIParentViewController" ref="224850086"/>
+							</object>
+						</object>
+					</object>
 					<object class="IBUINavigationController" id="1018026813">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="573482422">
 							<string key="IBUITitle">FM</string>
@@ -185,6 +216,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">fm.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -204,12 +236,12 @@
 									<string key="IBUITitle">Root View Controller</string>
 								</object>
 								<reference key="IBUIParentViewController" ref="1018026813"/>
-								<string key="IBUINibName">FMRadioListView</string>
 							</object>
 						</object>
 					</object>
 					<object class="IBUINavigationController" id="749712946">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="213732751">
+							<reference key="IBUITabBar"/>
 							<int key="IBUISystemItemIdentifier">8</int>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
@@ -234,36 +266,7 @@
 							</object>
 						</object>
 					</object>
-					<object class="IBUINavigationController" id="862495540">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="852111413">
-							<string key="IBUITitle">Settings</string>
-							<object class="NSCustomResource" key="IBUIImage">
-								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">settings.png</string>
-							</object>
-						</object>
-						<reference key="IBUIParentViewController" ref="1034742383"/>
-						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-						<object class="IBUINavigationBar" key="IBUINavigationBar" id="1067917252">
-							<nil key="NSNextResponder"/>
-							<int key="NSvFlags">256</int>
-							<string key="NSFrameSize">{0, 0}</string>
-							<bool key="IBUIOpaque">NO</bool>
-							<bool key="IBUIClipsSubviews">YES</bool>
-							<bool key="IBUIMultipleTouchEnabled">YES</bool>
-							<int key="IBUIBarStyle">1</int>
-						</object>
-						<object class="NSMutableArray" key="IBUIViewControllers">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIViewController" id="662324069">
-								<object class="IBUINavigationItem" key="IBUINavigationItem" id="1033984824">
-									<string key="IBUITitle">Settings</string>
-								</object>
-								<reference key="IBUIParentViewController" ref="862495540"/>
-								<string key="IBUINibName">SettingView</string>
-							</object>
-						</object>
-					</object>
+					<reference ref="862495540"/>
 				</object>
 				<object class="IBUITabBar" key="IBUITabBar" id="795333663">
 					<nil key="NSNextResponder"/>
@@ -848,10 +851,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">TVSearchViewController</string>
 					<string key="superclassName">TVListViewController</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">tvSearchBar</string>
-						<string key="NS.object.0">UISearchBar</string>
-					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/TVSearchViewController.h</string>
@@ -976,7 +975,21 @@
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIAccessibility.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UINibLoading.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="770771071">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIResponder.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -1027,10 +1040,7 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">UIResponder</string>
 					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">UIKit.framework/Headers/UIResponder.h</string>
-					</object>
+					<reference key="sourceIdentifier" ref="770771071"/>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UIScrollView</string>
@@ -1046,6 +1056,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UISearchBar.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UISearchDisplayController</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UISearchDisplayController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

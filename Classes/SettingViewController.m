@@ -7,10 +7,18 @@
 
 @implementation SettingViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    return self;
+}
+
 - (void)dealloc {
-	LOG_CURRENT_METHOD;
-	[self.tableView setDelegate:nil];
     [super dealloc];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = NSLocalizedString(@"Settings", nil);
 }
 
 - (void)fontSizeChanged:(UISegmentedControl *)sender {
@@ -98,26 +106,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 0) {
-		RegionSettingViewController *controller = [[[RegionSettingViewController alloc] init] autorelease];
+		RegionSettingViewController *controller = [[[RegionSettingViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
 		controller.title = NSLocalizedString(@"Region", nil);
 		[self.navigationController pushViewController:controller animated:YES];
 	} else if (indexPath.section == 1) {
-		PrimeTimeSettingViewController *controller = [[[PrimeTimeSettingViewController alloc] initWithNibName:@"PrimeTimeSettingView" bundle:nil] autorelease];
+		PrimeTimeSettingViewController *controller = [[[PrimeTimeSettingViewController alloc] init] autorelease];
 		controller.title = NSLocalizedString(@"PrimeTime", nil);
 		[self.navigationController pushViewController:controller animated:YES];
 	} else {
-		TimeWidthSettingViewController *controller = [[[TimeWidthSettingViewController alloc] init] autorelease];
+		TimeWidthSettingViewController *controller = [[[TimeWidthSettingViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
 		controller.title = NSLocalizedString(@"TimeWidth", nil);
 		[self.navigationController pushViewController:controller animated:YES];
 	}
 
-}
-
-#pragma mark <UIViewController> Methods
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	[self.tableView reloadData];
 }
 
 @end

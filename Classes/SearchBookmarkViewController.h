@@ -2,14 +2,13 @@
 #import "TVSearchViewController.h"
 
 @interface SearchBookmarkViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
-	IBOutlet UITableView *keywordHistoryView;
+	UITableView *keywordHistoryView;
 	TVSearchViewController *tvSearchViewController;
 }
 
-@property (nonatomic, retain) UITableView *keywordHistoryView;
-@property (nonatomic, retain) TVSearchViewController *tvSearchViewController;
+@property (nonatomic, assign) TVSearchViewController *tvSearchViewController;
 
-- (IBAction)clearButtonClicked;
-- (IBAction)cancelButtonClicked;
+- (IBAction)clearButtonClicked:(id)sender;
+- (IBAction)cancelButtonClicked:(id)sender;
 
 @end

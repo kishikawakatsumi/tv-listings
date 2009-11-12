@@ -3,19 +3,12 @@
 #import "Debug.h"
 
 @interface UIPickerView (Extented)
-
 - (void)setSoundsEnabled:(BOOL)enabled;
-
 @end
 
 @implementation PrimeTimeSettingViewController
 
-@synthesize primeTimePicker;
-
 - (void)dealloc {
-	LOG_CURRENT_METHOD;
-	[primeTimePicker setDelegate:nil];
-	[primeTimePicker release];
     [super dealloc];
 }
 
@@ -47,6 +40,20 @@
 
 #pragma mark <UIViewController> Methods
 
+- (void)loadView {
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 367.0f)];
+    contentView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.view = contentView;
+    [contentView release];
+    
+    primeTimePicker  = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, 75.0f, 320.0f, 216.0f)];
+    primeTimePicker.dataSource = self;
+    primeTimePicker.delegate = self;
+    primeTimePicker.showsSelectionIndicator = YES;
+    [contentView addSubview:primeTimePicker];
+    [primeTimePicker release];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
@@ -57,10 +64,6 @@
 	NSInteger indexOfTo = [[TVListingsAppDelegate timeList] indexOfObject:settings.primeTimeTo];
 	[primeTimePicker selectRow:24 * 100 + indexOfTo inComponent:1 animated:NO];
 	[primeTimePicker setSoundsEnabled:YES];
-}
- 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)didReceiveMemoryWarning {

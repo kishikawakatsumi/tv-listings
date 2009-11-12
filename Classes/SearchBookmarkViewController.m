@@ -6,27 +6,20 @@
 
 @implementation SearchBookmarkViewController
 
-@synthesize keywordHistoryView;
 @synthesize tvSearchViewController;
 
-#pragma mark <UITableViewDataSource> Methods
-
 - (void)dealloc {
-	LOG_CURRENT_METHOD;
-	[tvSearchViewController release];
-	[keywordHistoryView setDelegate:nil];
-	[keywordHistoryView release];
     [super dealloc];
 }
 
-- (IBAction)clearButtonClicked {
+- (IBAction)clearButtonClicked:(id)sender {
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
 	Settings *settings = sharedTVListingsApp.settings;
 	[settings.keywordHistory removeAllObjects];
 	[keywordHistoryView reloadData];
 }
 
-- (IBAction)cancelButtonClicked {
+- (IBAction)cancelButtonClicked:(id)sender {
 	[tvSearchViewController hideWaitingView];
 	[self dismissModalViewControllerAnimated:YES];
 }
@@ -81,8 +74,33 @@
 
 #pragma mark <UIViewController> Methods
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)loadView {
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 460.0f)];
+    self.view = contentView;
+    [contentView release];
+    
+    UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)];
+    navigationBar.barStyle = UIBarStyleBlackOpaque;
+    [contentView addSubview:navigationBar];
+    [navigationBar release];
+    
+    UIBarButtonItem *clearButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clearButtonClicked:)];
+    
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButtonClicked:)];
+    
+    UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(@"History", nil)];
+    navigationItem.leftBarButtonItem = clearButton;
+    [clearButton release];
+    navigationItem.rightBarButtonItem = cancelButton;
+    [cancelButton release];
+    [navigationBar setItems:[NSArray arrayWithObject:navigationItem]];
+    [navigationItem release];
+    
+    keywordHistoryView  = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 44.0f, 320.0f, 416.0f)];
+    keywordHistoryView.dataSource = self;
+    keywordHistoryView.delegate = self;
+    [contentView addSubview:keywordHistoryView];
+    [keywordHistoryView release];
 }
 
 - (void)didReceiveMemoryWarning {

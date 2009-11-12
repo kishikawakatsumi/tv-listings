@@ -20,7 +20,6 @@
 	LOG_CURRENT_METHOD;
 	[waitingView release];
 	[keyword release];
-	[tvSearchBar release];
     [super dealloc];
 }
 
@@ -112,13 +111,46 @@
 
 - (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
 	[self showWaitingView];
-	SearchBookmarkViewController *controller = [[[SearchBookmarkViewController alloc] initWithNibName:@"SearchBookmarkView" bundle:nil] autorelease];
+	SearchBookmarkViewController *controller = [[[SearchBookmarkViewController alloc] init] autorelease];
 	controller.tvSearchViewController = self;
 	[self presentModalViewController:controller animated:YES];
 }
 
 #pragma mark <UIViewController> Methods
 
+- (void)loadView {
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 367.0f)];
+    self.view = contentView;
+    [contentView release];
+    
+    tvSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)];
+    tvSearchBar.delegate = self;
+    tvSearchBar.barStyle = UIBarStyleBlackOpaque;
+    tvSearchBar.placeholder = NSLocalizedString(@"Keyword", nil);
+    tvSearchBar.showsBookmarkButton = YES;
+    [contentView addSubview:tvSearchBar];
+    [tvSearchBar release];
+    
+    tvListView  = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 44.0f, 320.0f, 323.0f)];
+    tvListView.dataSource = self;
+    tvListView.delegate = self;
+    [contentView addSubview:tvListView];
+    [tvListView release];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	
+	waitingView = [[WaitingView alloc] initWithFrame:CGRectMake(0.0, 44.0, 320.0, 480.0)];
+	waitingView.backgroundColor = [UIColor blackColor];
+	waitingView.opaque = NO;
+	waitingView.alpha = 0.0;
+	waitingView.userInteractionEnabled = YES;
+	((WaitingView *)waitingView).tvSearchviewController = self;
+	[self.view addSubview:waitingView];
+	
+	shouldNotReflesh = YES;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
@@ -140,20 +172,6 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-	shouldNotReflesh = YES;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	
-	waitingView = [[WaitingView alloc] initWithFrame:CGRectMake(0.0, 44.0, 320.0, 480.0)];
-	waitingView.backgroundColor = [UIColor blackColor];
-	waitingView.opaque = NO;
-	waitingView.alpha = 0.0;
-	waitingView.userInteractionEnabled = YES;
-	((WaitingView *)waitingView).tvSearchviewController = self;
-	[self.view addSubview:waitingView];
-	
 	shouldNotReflesh = YES;
 }
 

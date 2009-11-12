@@ -2,7 +2,7 @@
 #import "TVListViewController.h"
 
 @interface TVSearchViewController : TVListViewController <UISearchBarDelegate> {
-	IBOutlet UISearchBar *tvSearchBar;
+	UISearchBar *tvSearchBar;
 	NSString *keyword;
 	UIView *waitingView;
 }

@@ -5,7 +5,6 @@
 
 @implementation DetailsViewController
 
-@synthesize detailsView;
 @synthesize detailPageURL;
 
 static NSObject *webViewcreateWebViewWithRequestIMP(id self, SEL _cmd, NSObject* sender, NSObject* request) {
@@ -40,6 +39,18 @@ static NSObject *webViewcreateWebViewWithRequestIMP(id self, SEL _cmd, NSObject*
 
 #pragma mark <UIViewController> Methods
 
+- (void)loadView {
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 416.0f)];
+    self.view = contentView;
+    [contentView release];
+	
+	detailsView = [[UIWebView alloc] initWithFrame:contentView.frame];
+	[detailsView setDelegate:self];
+	[detailsView setDetectsPhoneNumbers:YES];
+	[detailsView setScalesPageToFit:YES];
+	[self.view addSubview:detailsView];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	Class UIWebViewWebViewDelegate = objc_getClass("UIWebViewWebViewDelegate");
@@ -47,24 +58,12 @@ static NSObject *webViewcreateWebViewWithRequestIMP(id self, SEL _cmd, NSObject*
 					(IMP)webViewcreateWebViewWithRequestIMP, "@@:@@");
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-	[detailsView stopLoading];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
 	[detailsView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:detailPageURL]]];
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	if (fromInterfaceOrientation == UIDeviceOrientationIsPortrait(fromInterfaceOrientation)) {
-		[self.navigationController setNavigationBarHidden:YES animated:YES];
-	} else {
-		[self.navigationController setNavigationBarHidden:NO animated:YES];
-	}
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)viewWillDisappear:(BOOL)animated {
+	[detailsView stopLoading];
 }
 
 - (void)didReceiveMemoryWarning {
