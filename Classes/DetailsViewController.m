@@ -7,10 +7,6 @@
 
 @synthesize detailPageURL;
 
-static NSObject *webViewcreateWebViewWithRequestIMP(id self, SEL _cmd, NSObject* sender, NSObject* request) {
-	return [sender retain];
-}
-
 - (void)dealloc {
 	LOG_CURRENT_METHOD;
 	[detailPageURL release];
@@ -53,9 +49,6 @@ static NSObject *webViewcreateWebViewWithRequestIMP(id self, SEL _cmd, NSObject*
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	Class UIWebViewWebViewDelegate = objc_getClass("UIWebViewWebViewDelegate");
-	class_addMethod(UIWebViewWebViewDelegate, @selector(webView:createWebViewWithRequest:), 
-					(IMP)webViewcreateWebViewWithRequestIMP, "@@:@@");
 }
 
 - (void)viewWillAppear:(BOOL)animated {
