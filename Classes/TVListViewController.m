@@ -187,22 +187,27 @@
 	[blockView setBackgroundColor:[UIColor blackColor]];
 	[blockView setAlpha:0.0f];
 	[[[UIApplication sharedApplication] keyWindow] addSubview:blockView];
+	[blockView release];
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.3f];
-	[UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:blockView cache:NO];
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	[blockView setAlpha:0.5f];
 	[UIView commitAnimations];
 	
 	UICCalendarPicker *calendarPicker = [[UICCalendarPicker alloc] initWithSize:UICCalendarPickerSizeExtraLarge];
+    
+    UIView *glassView = [[UIView alloc] initWithFrame:CGRectMake(320.0f / 2 - calendarPicker.frame.size.width / 2, 64.0f, calendarPicker.frame.size.width, calendarPicker.frame.size.height)];
+    glassView.clipsToBounds = YES;
+    [[[UIApplication sharedApplication] keyWindow] addSubview:glassView];
+    [glassView release];
+    
 	[calendarPicker setDelegate:self];
 	[calendarPicker addSelectedDate:sharedTVListingsApp.baseDate];
 	[calendarPicker setMinDate:[NSDate dateWithTimeIntervalSinceNow:-86400 * 7]];
 	[calendarPicker setMaxDate:[NSDate dateWithTimeIntervalSinceNow:86400 * 7]];
-	[calendarPicker showAtPoint:CGPointMake(320.0f / 2 - calendarPicker.frame.size.width / 2, 64.0f) inView:[[UIApplication sharedApplication] keyWindow] animated:YES];
+	[calendarPicker showAtPoint:CGPointMake(0.0f, 0.0f) inView:glassView animated:YES];
 	[calendarPicker release];
-	
-	[blockView release];
 }
 
 #pragma mark <UICCalendarPickerDelegate> Methods
@@ -241,7 +246,7 @@
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
 	[UIView setAnimationDuration:0.3f];
-	[UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:blockView cache:NO];
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	[blockView setAlpha:0.0f];
 	[UIView commitAnimations];
 }
@@ -254,7 +259,7 @@
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
 	[UIView setAnimationDuration:0.3f];
-	[UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:blockView cache:NO];
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	[blockView setAlpha:0.0f];
 	[UIView commitAnimations];
 }

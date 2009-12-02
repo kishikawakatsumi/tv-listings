@@ -403,18 +403,16 @@ static UIColor *holidayColor;
 	[self setUpCalendarWithDate:pageDate];
 	
 	if (animated) {
-		[self setAlpha:0.0f];
 		[aView addSubview:self];
 		
 		CGRect frame = [self frame];
-		frame.origin.y = frame.origin.y - frame.size.height / 2;
+		frame.origin.y = frame.origin.y - frame.size.height;
 		self.frame = frame;
 		
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.3f];
-		[UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:self cache:NO];
-		[self setAlpha:1.0f];
-		frame.origin.y = frame.origin.y + frame.size.height / 2;
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+		frame.origin.y = frame.origin.y + frame.size.height;
 		self.frame = frame;
 		[UIView commitAnimations];
 	} else {
@@ -430,17 +428,14 @@ static UIColor *holidayColor;
 		
 		CGRect frame = [self frame];
 		frame.origin.x = point.x;
-		frame.origin.y = point.y;
+		frame.origin.y = point.y - frame.size.height;
 		self.frame = frame;
 		
-        self.alpha = 0.0f;
-        self.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
-        
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.3f];
-		[UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:self cache:NO];
-		[self setAlpha:1.0f];
-        self.transform = CGAffineTransformIdentity;
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+		frame.origin.y = frame.origin.y + frame.size.height;
+		self.frame = frame;
 		[UIView commitAnimations];
 	} else {
 		CGRect frame = [self frame];
@@ -457,9 +452,10 @@ static UIColor *holidayColor;
 		[UIView setAnimationDelegate:self];
 		[UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
 		[UIView setAnimationDuration:0.3f];
-		[UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:self cache:NO];
-        self.alpha = 0.0f;
-        self.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+		CGRect frame = [self frame];
+		frame.origin.y = frame.origin.y - frame.size.height;
+		self.frame = frame;
 		[UIView commitAnimations];
 	} else {
 		[self removeFromSuperview];
@@ -467,7 +463,9 @@ static UIColor *holidayColor;
 }
 
 - (void)animationFinished:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
+    UIView *superview = self.superview; /* glass view */
 	[self removeFromSuperview];
+    [superview removeFromSuperview];
 }
 
 #pragma mark Private Methods
@@ -681,7 +679,6 @@ static UIColor *holidayColor;
 	NSDateComponents *plusComponents = [[[NSDateComponents alloc] init] autorelease];
 	[plusComponents setDay:1];
 	
-	//NSInteger year = [components year];
 	NSUInteger month = [components month];
 	UILabel *monthLabel = (UILabel *)[self viewWithTag:UICCALENDAR_MONTH_LABEL_TAG];
 	[monthLabel setText:[self picker:self textForYearMonth:currentDate]];

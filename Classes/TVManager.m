@@ -109,8 +109,6 @@ static NSDictionary *abbreviationMappings = NULL;
 			NSString *category = [item objectForKey:@"category"];
 			if ([category length] > 0) {
 				program.category = [category stringByHalfwideningLatinCharacters];
-			} else {
-				break;
 			}
 			
 			NSString *link = [item objectForKey:@"link"];

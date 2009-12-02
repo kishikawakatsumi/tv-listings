@@ -2,9 +2,9 @@
 #import "TVListingsAppDelegate.h"
 #import "Debug.h"
 
-@interface UIPickerView (Extented)
-- (void)setSoundsEnabled:(BOOL)enabled;
-@end
+//@interface UIPickerView (Extented)
+//- (void)setSoundsEnabled:(BOOL)enabled;
+//@end
 
 @implementation PrimeTimeSettingViewController
 
@@ -58,12 +58,12 @@
     [super viewDidLoad];
 	TVListingsAppDelegate *sharedTVListingsApp = [TVListingsAppDelegate sharedTVListingsApp];
 	Settings *settings = sharedTVListingsApp.settings;
-	[primeTimePicker setSoundsEnabled:NO];
+	//[primeTimePicker setSoundsEnabled:NO];
 	NSInteger indexOfFrom = [[TVListingsAppDelegate timeList] indexOfObject:settings.primeTimeFrom];
 	[primeTimePicker selectRow:24 * 100 + indexOfFrom inComponent:0 animated:NO];
 	NSInteger indexOfTo = [[TVListingsAppDelegate timeList] indexOfObject:settings.primeTimeTo];
 	[primeTimePicker selectRow:24 * 100 + indexOfTo inComponent:1 animated:NO];
-	[primeTimePicker setSoundsEnabled:YES];
+	//[primeTimePicker setSoundsEnabled:YES];
 }
 
 - (void)didReceiveMemoryWarning {
